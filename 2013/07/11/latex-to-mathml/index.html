@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LaTeX 向 MathML 的转换 | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="Tools, libs, research and method about translating LaTeX code to MathML code..">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="LaTeX 向 MathML 的转换"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/daily">Daily</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2013-07-10T16:00:00.000Z"><a href="/2013/07/11/latex-to-mathml/">Thursday, Jul 11 2013, 12:00:00 am</a></time>
+
+  
+    <h1 class="title">LaTeX 向 MathML 的转换</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/web/">web</a>, <a href="/tags/latex/">latex</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>在网页上显示数学公式一直是个难题。尽管已经有 <a href="http://www.w3.org/Math/" target="_blank">MathML</a> 这个数学公式的 W3C 标准，但其代码的编写繁复，难以手工撰写。另一方面 LaTeX 是学术领域内数学公式编写的事实标准。所以将 LaTeX 代码转换为 MathML 代码显示，便成为一个比较好的方案。</p>
+<h1 id=" 开源工具 ">开源工具</h1>
+<h3 id="MathToWeb"><a href="http://www.mathtoweb.com/cgi-bin/mathtoweb_home.pl" target="_blank">MathToWeb</a></h3>
+<blockquote>
+<p>MathToWeb is a free authoring tool that converts mathematical expressions written in AMS-Latex to presentation MathML. It allows the author to write web pages in XHTML (just a strict form of HTML) containing equations in LaTeX rather than MathML, the former being considerably easier to read and write. MathToWeb can be applied to single equations or entire documents containing many hundreds of equations.</p>
+</blockquote>
+<p>一个基于 Java 的网页写作工具。可以用 XHTML 撰写带有 LaTeX 代码的网页，然后转换。支持将 AMS-Latex 代码转换为 MathML。提供 GUI 和命令行接口。</p>
+<h3 id="LaTeXMathML"><a href="https://www.maths.nottingham.ac.uk/personal/drw/lm.html" target="_blank">LaTeXMathML</a></h3>
+<p>当前有两个活跃分支：</p>
+<ul>
+<li><p><a href="http://math.etsu.edu/LaTeXMathML/" target="_blank">A Brief Description of LaTeXMathML</a> by <a href="https://sites.google.com/site/drjknisley/" target="_blank">Jeff Knisley</a></p>
+</li>
+<li><p><a href="http://pillars.che.pitt.edu/LaTeXMathML/" target="_blank">The LaTeXMathML Perl Port</a> by <a href="mailto:broadway@city-net.com">Peter Williams</a></p>
+</li>
+</ul>
+<h1 id=" 标准 ">标准</h1>
+<h3 id="MathML"><a href="http://www.w3.org/Math/" target="_blank">MathML</a></h3>
+<p>可以在该标准网站找到使用该标准的<a href="http://www.w3.org/Math/Software/" target="_blank">软件列表</a>，其中有一个<a href="http://www.w3.org/Math/Software/mathml_software_cat_converters.html" target="_blank">代码转换软件列表</a>。</p>
+<h1 id=" 研究资料 ">研究资料</h1>
+<ul>
+<li><p><a href="http://www.ibm.com/developerworks/cn/xml/x-mathml2/" target="_blank">MathML 与 LaTeX 的映射关系分析</a></p>
+</li>
+<li><p><a href="https://github.com/quxiaofeng/csxfqu/raw/master/images/latex2mathml.pdf" target="_blank">架構於 MathML 並支援 LaTeX 輸入之數學討論版設計</a> by 黃皇男, 顏佩君, 王婕</p>
+</li>
+</ul>
+<h1 id=" 示例 ">示例</h1>
+<h3 id="FreeMind_blog_by_Chiyuan_Zhang"><a href="http://freemind.pluskid.org/" target="_blank">FreeMind blog</a> by <a href="http://pluskid.org/" target="_blank">Chiyuan Zhang</a></h3>
+<p>该博客使用基于 Ruby 的工具链编译 markdown 文件，生成静态博客。同时使用 pandoc 提供 pdf 版本，效果较好。</p>
+<p>博客中有关设置的文章：</p>
+<ul>
+<li><p><a href="http://freemind.pluskid.org/technology/the-unbearable-madness-of-static-blog-generators/" target="_blank">The Unbearable Madness of Static Blog Generators</a><br>首次配置的经历</p>
+</li>
+<li><p><a href="http://freemind.pluskid.org/misc/printable-version-pdf-of-this-blog/" target="_blank">Printable Version (PDF) of this Blog</a> 关于 LaTeX to MathML 的转换和 pdf 文件生成的经验</p>
+</li>
+</ul>
+<p>该博客作者提供了一个未完善的小工具 (<a href="https://github.com/pluskid/texml" target="_blank">Github Repo</a>)。</p>
+
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_fb">Facebook</a>
+  <a class="jiathis_button_twitter">Twitter</a>
+  <a class="jiathis_button_email">邮件</a>
+  <a class="jiathis_button_print">打印</a>
+
+  <a href="http://www.jiathis.com/share?uid=" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2013/07/12/3d-flattening/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2013/04/09/matlab-unit-test/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
