@@ -548,6 +548,288 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2012-06-27T16:00:00.000Z"><a href="/2012/06/28/getting-started-with-r/">Thursday, Jun 28 2012, 12:00:00 am</a></time>
+
+  
+    <h1 class="title"><a href="/2012/06/28/getting-started-with-r/"></a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/note/">note</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/r/">r</a>, <a href="/tags/coding/">coding</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="1-_Downloading_and_Installing_R">1. Downloading and Installing R</h3>
+<ul>
+<li>R Studio</li>
+<li>R Language  </li>
+</ul>
+<h3 id="2-_Getting_Help_on_a_Function">2. Getting Help on a Function</h3>
+<pre><code class="r">
+help(func)
+?(func)
+args(func)
+example(func)
+</code></pre>
+
+<h3 id="3-_Viewing_the_Supplied_Documentation">3. Viewing the Supplied Documentation</h3>
+<pre><code class="r">
+help.start()
+</code></pre>
+
+<h3 id="4-_Searching_the_Web_for_Help">4. Searching the Web for Help</h3>
+<ul>
+<li>RSiteSearch(“key phrase”)</li>
+<li><a href="http://rseek.org" target="_blank">http://rseek.org</a></li>
+<li><a href="http://stackoverflow.com" target="_blank">http://stackoverflow.com</a></li>
+<li><a href="http://stats.stackexchange.com" target="_blank">http://stats.stackexchange.com</a></li>
+</ul>
+<h3 id="5-_Reading_Tabular_Datafiles">5. Reading Tabular Datafiles</h3>
+<pre>
+<code class="r">
+dfrm <- read.table("filename.txt", sep=":")    
+print dftm    
+</code>
+</pre>
+
+<h3 id="6-_Reading_from_CSV_Files">6. Reading from CSV Files</h3>
+<pre><code class="r">
+table <- read.csv("filename", header=FALSE)  
+</code></pre>
+
+<h3 id="7-_Creating_a_Vector">7. Creating a Vector</h3>
+<pre><code class="r">
+v1 <- c(1,2,3)
+v2 <- c("A","B","C")
+mode(c(3.1415, "foo"))
+</code></pre>
+
+<h3 id="8-_Computing_Basic_Statistics">8. Computing Basic Statistics</h3>
+<pre><code class="r">
+mean(x)
+median(x)
+sd(x)
+var(x)
+cor(x,y)
+cov(x,y)
+</code></pre>
+
+<h3 id="9-_Initializing_a_Data_Frame_form_Column_Data">9. Initializing a Data Frame form Column Data</h3>
+<pre><code class="r">
+dfrm <- data.frame(v1, v2, v3, f1, f2)
+dfrm <- as.data.frame(list.of.vectors)
+dfrm <- data.frame(pred1, pred2, pred3, resp)
+dfrm <- data.frame(p1=pred1, p2=pred2, p3=pred3, r=resp)
+</code></pre>
+
+<h3 id="10-_Selecting_Data_Frame_Columns_by_Position">10. Selecting Data Frame Columns by Position</h3>
+<pre><code class="r">
+dfrm[[n]]
+dfrm[n]
+dfrm[c(n_1, n_2, ..., n_k)]
+dfrm[, n]
+dfrm[, c(n_1, n_2, ..., n_k)]
+dfrm[, vec, drop=FALSE]
+</code></pre>
+
+<h3 id="11-_Selecting_Data_Frame_Columns_by_Name">11. Selecting Data Frame Columns by Name</h3>
+<pre><code class="r">
+dfrm[[anme]]
+dfrm$name
+dfrm["name"]
+dfrm[c("name_1", "name_2", ..., "name_k")]
+dfrm[, "name"]
+dfrm[, c("name_1", "name_2", ..., "name_k")]
+</code></pre>
+
+<h3 id="12-_Forming_a_Confidence_Interval_for_a_Mean">12. Forming a Confidence Interval for a Mean</h3>
+<pre><code class="r">
+x <- rnorm(50, mean=100, sd=50)
+t.test(x)
+t.test(x, conf.level=0.99)
+</code></pre>
+
+
+<h3 id="13-_Forming_a_Confidence_Interval_for_a_Proportion">13. Forming a Confidence Interval for a Proportion</h3>
+<pre><code class="r">
+prop.test(n, x)
+prop.test(6, 9)
+prop.test(n, x,,p, conf.level=0.99) # 99% confidence level
+</code></pre>
+
+
+<h3 id="14-_Comparing_the_Means_of_Two_Samples">14. Comparing the Means of Two Samples</h3>
+<pre><code class="r">
+t.test(x, y)
+t.test(x, y, paired=TRUE)
+</code></pre>
+
+<h3 id="15-_Testing_a_Correlation_for_Significance">15. Testing a Correlation for Significance</h3>
+<pre><code class="r">
+cor.test(x, y)
+cor.test(x, y, method="Spearman")
+</code></pre>
+
+<h3 id="16-_Creating_a_Scatter_Plot">16. Creating a Scatter Plot</h3>
+<pre><code class="r">
+plot(x, y)
+plot(dfrm)
+</code></pre>
+
+<h3 id="17-_Creating_a_Bar_Chart">17. Creating a Bar Chart</h3>
+<pre><code class="r">
+barplot(c(height1, height2, height3))
+
+barplot(heights,
+        main="Mean Temp. by Month"
+        names.arg=c("May", "Jun", "July", "Aug", "Sep"),
+        ylab="Temp (deg. F)")
+</code></pre>
+
+
+<h3 id="18-_Creating_a_Box_Plot">18. Creating a Box Plot</h3>
+<pre><code class="r">
+boxplot(x)
+</code></pre>
+
+<h3 id="19-_Creating_a_Histogram">19. Creating a Histogram</h3>
+<pre><code class="r">
+data(Cars93, package="MASS")
+hist(Cars93$MPG.city)
+hist(Cars93$MPG.city, 20)
+hist(Cars93$MPG.city, 20, main="City MPG (1993)", xlab="MPG")
+</code></pre>
+
+<h3 id="20-_Performing_Simple_Linear_Regression">20. Performing Simple Linear Regression</h3>
+<pre><code class="r">
+lm(y ~ x)
+lm(y ~ x, data=dfrm) # Take x and y from dfrm
+</code></pre>
+
+
+<h3 id="21-_Performing_Multiple_Linear_Regression">21. Performing Multiple Linear Regression</h3>
+<pre><code class="r">
+y=c(6.584519, 6.425215, 7.830578, 2.757777, 5.794566, 7.314611, 2.533638, 8.696910, 6.304464, 8.095094)
+u=c(0.79939065, -2.31338537, 1.71736899, 1.27652888, 0.39643488, 1.82247760, -1.34186107, 0.75946803, 0.92000133, 1.02341093)
+v=c(2.7971413, 2.7836201, 2.7570401, 0.4191765, 2.3785468, 1.8291302, 2.3472593, 3.4028180, 2.0654513, 2.6729252)
+w=c(4.366557, 4.515084, 3.865557, 2.547935, 3.265971, 4.518522, 2.570884, 4.442560, 2.835248, 3.868573)
+lm(y ~ u + v + w)
+lm(y ~ u + v + w, data=dfrm)
+</code></pre>
+
+
+<h3 id="22-_Getting_Regression_Statistics">22. Getting Regression Statistics</h3>
+<pre><code class="r">
+y=c(6.584519, 6.425215, 7.830578, 2.757777, 5.794566, 7.314611, 2.533638, 8.696910, 6.304464, 8.095094)
+u=c(0.79939065, -2.31338537, 1.71736899, 1.27652888, 0.39643488, 1.82247760, -1.34186107, 0.75946803, 0.92000133, 1.02341093)
+v=c(2.7971413, 2.7836201, 2.7570401, 0.4191765, 2.3785468, 1.8291302, 2.3472593, 3.4028180, 2.0654513, 2.6729252)
+w=c(4.366557, 4.515084, 3.865557, 2.547935, 3.265971, 4.518522, 2.570884, 4.442560, 2.835248, 3.868573)
+m <- lm(y ~ u + v + w)
+summary(m)
+anova(m)
+coefficients(m)
+coef(m)
+confint(m)
+deviance(m)
+effects(m)
+fitted(m)
+residuals(m)
+resid(m)
+vcov(m)
+</code></pre>
+
+<h3 id="23-_Diagnosing_a_Linear_Regression">23. Diagnosing a Linear Regression</h3>
+<pre><code class="r">
+m <- lm(y ~ x)
+plot(m)
+
+library(car)
+outlier.test(m)
+</code></pre>
+
+<h3 id="24-_Predicting_New_Values">24. Predicting New Values</h3>
+<pre><code class="r">
+m <- lm(y ~ u + v + w)
+preds <- data.frame(u=3.1, v=4.0, w=5.5)
+predict(m, newdata=preds)
+preds <- data.frame(
+        u=c(3.0, 3.1, 3.2, 3.3),
+        v=c(3.9, 4.0, 4.1, 4.2),
+        w=c(5.3, 5.5, 5,7, 5.9) )
+predict(m, newdata=preds)
+</code></pre>
+
+<h3 id="25-_Accessing_the_Functions_in_a_Package">25. Accessing the Functions in a Package</h3>
+<pre><code class="r">
+library(packagename)
+library(MASS)
+lda(f ~ x + y)
+detach(package:MASS)
+</code></pre>
+
+<h3 id="Chinese_Translation">Chinese Translation</h3>
+<ul>
+<li>Chen Gang has translated <a href="http://gossipcoder.com/?tag=r%E5%85%A5%E9%97%A825%E6%8B%9B" target="_blank">some sections</a> of this book.</li>
+<li>Yu Guangchuang has recreated <a href="http://ygc.name/2011/08/17/ggplot2-version-figures-25-recipes-started-r/" target="_blank">the figures</a> of this book</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/06/28/getting-started-with-r/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/06/28/getting-started-with-r/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/06/28/getting-started-with-r/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2012-06-24T16:00:00.000Z"><a href="/2012/06/25/opensource-hardware/">Monday, Jun 25 2012, 12:00:00 am</a></time>
 
   
@@ -674,6 +956,97 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2012-06-19T16:00:00.000Z"><a href="/2012/06/20/qrcode/">Wednesday, Jun 20 2012, 12:00:00 am</a></time>
+
+  
+    <h1 class="title"><a href="/2012/06/20/qrcode/">QR Code Resources</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/blog/">blog</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/device/">device</a>, <a href="/tags/algorithm/">algorithm</a>, <a href="/tags/research/">research</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="Definition">Definition</h2>
+<ul>
+<li>wiki</li>
+</ul>
+<ul>
+<li><a href="http://zh.wikipedia.org/wiki/%E4%BA%8C%E7%B6%AD%E6%A2%9D%E7%A2%BC" target="_blank">2D Barcode</a></li>
+<li><a href="http://zh.wikipedia.org/wiki/%E6%B1%89%E4%BF%A1%E7%A0%81" target="_blank">Han Xin Code</a></li>
+<li><a href="http://zh.wikipedia.org/wiki/QR%E7%A2%BC" target="_blank">QR code</a>, <a href="http://en.wikipedia.org/wiki/QR_code" target="_blank">en</a></li>
+</ul>
+<ul>
+<li>Standard ISO/IEC 18004 <a href="http://raidenii.net/files/datasheets/misc/qr_code.pdf" target="_blank">pdf</a></li>
+</ul>
+<h2 id="Code_and_Guide">Code and Guide</h2>
+<ul>
+<li>Encode algorithm QR-code from <a href="http://stackoverflow.com/questions/5446421/encode-algorithm-qr-code" target="_blank">stackoverflow</a></li>
+<li>zxing, a 1D/2D barcode lib <a href="http://code.google.com/p/zxing/" target="_blank">google code</a></li>
+</ul>
+<h2 id="Demo">Demo</h2>
+<ul>
+<li>A online QR code generator <a href="http://zxing.appspot.com/generator" target="_blank">ZXing Project</a></li>
+<li>A simple QR online generator <a href="http://qrcode.kaywa.com/" target="_blank">kaywa</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/06/20/qrcode/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/06/20/qrcode/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/06/20/qrcode/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2012-06-19T16:00:00.000Z"><a href="/2012/06/20/acrylic/">Wednesday, Jun 20 2012, 12:00:00 am</a></time>
 
   
@@ -753,97 +1126,6 @@
           <div class="alignright"> 
             <a href="http://csxfqu.tk/2012/06/20/acrylic/#comment" class="comment-link">
               <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/06/20/acrylic/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-06-19T16:00:00.000Z"><a href="/2012/06/20/qrcode/">Wednesday, Jun 20 2012, 12:00:00 am</a></time>
-
-  
-    <h1 class="title"><a href="/2012/06/20/qrcode/">QR Code Resources</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/blog/">blog</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/device/">device</a>, <a href="/tags/algorithm/">algorithm</a>, <a href="/tags/research/">research</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="Definition">Definition</h2>
-<ul>
-<li>wiki</li>
-</ul>
-<ul>
-<li><a href="http://zh.wikipedia.org/wiki/%E4%BA%8C%E7%B6%AD%E6%A2%9D%E7%A2%BC" target="_blank">2D Barcode</a></li>
-<li><a href="http://zh.wikipedia.org/wiki/%E6%B1%89%E4%BF%A1%E7%A0%81" target="_blank">Han Xin Code</a></li>
-<li><a href="http://zh.wikipedia.org/wiki/QR%E7%A2%BC" target="_blank">QR code</a>, <a href="http://en.wikipedia.org/wiki/QR_code" target="_blank">en</a></li>
-</ul>
-<ul>
-<li>Standard ISO/IEC 18004 <a href="http://raidenii.net/files/datasheets/misc/qr_code.pdf" target="_blank">pdf</a></li>
-</ul>
-<h2 id="Code_and_Guide">Code and Guide</h2>
-<ul>
-<li>Encode algorithm QR-code from <a href="http://stackoverflow.com/questions/5446421/encode-algorithm-qr-code" target="_blank">stackoverflow</a></li>
-<li>zxing, a 1D/2D barcode lib <a href="http://code.google.com/p/zxing/" target="_blank">google code</a></li>
-</ul>
-<h2 id="Demo">Demo</h2>
-<ul>
-<li>A online QR code generator <a href="http://zxing.appspot.com/generator" target="_blank">ZXing Project</a></li>
-<li>A simple QR online generator <a href="http://qrcode.kaywa.com/" target="_blank">kaywa</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/06/20/qrcode/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/06/20/qrcode/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/06/20/qrcode/">&nbsp;
               </span>
             </a>
           </div>

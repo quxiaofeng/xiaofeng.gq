@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="1. Downloading and Installing R
+
+R Studio
+R Language  
+
+2. Getting Help on a Function
+
+help(func)
+?(func)
+args(func)
+example(func)
+
+
+3. Viewing the Su">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/daily">Daily</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-06-27T16:00:00.000Z"><a href="/2012/06/28/getting-started-with-r/">Thursday, Jun 28 2012, 12:00:00 am</a></time>
+
+  
+    <h1 class="title"></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/note/">note</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/r/">r</a>, <a href="/tags/coding/">coding</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="1-_Downloading_and_Installing_R">1. Downloading and Installing R</h3>
+<ul>
+<li>R Studio</li>
+<li>R Language  </li>
+</ul>
+<h3 id="2-_Getting_Help_on_a_Function">2. Getting Help on a Function</h3>
+<pre><code class="r">
+help(func)
+?(func)
+args(func)
+example(func)
+</code></pre>
+
+<h3 id="3-_Viewing_the_Supplied_Documentation">3. Viewing the Supplied Documentation</h3>
+<pre><code class="r">
+help.start()
+</code></pre>
+
+<h3 id="4-_Searching_the_Web_for_Help">4. Searching the Web for Help</h3>
+<ul>
+<li>RSiteSearch(“key phrase”)</li>
+<li><a href="http://rseek.org" target="_blank">http://rseek.org</a></li>
+<li><a href="http://stackoverflow.com" target="_blank">http://stackoverflow.com</a></li>
+<li><a href="http://stats.stackexchange.com" target="_blank">http://stats.stackexchange.com</a></li>
+</ul>
+<h3 id="5-_Reading_Tabular_Datafiles">5. Reading Tabular Datafiles</h3>
+<pre>
+<code class="r">
+dfrm <- read.table("filename.txt", sep=":")    
+print dftm    
+</code>
+</pre>
+
+<h3 id="6-_Reading_from_CSV_Files">6. Reading from CSV Files</h3>
+<pre><code class="r">
+table <- read.csv("filename", header=FALSE)  
+</code></pre>
+
+<h3 id="7-_Creating_a_Vector">7. Creating a Vector</h3>
+<pre><code class="r">
+v1 <- c(1,2,3)
+v2 <- c("A","B","C")
+mode(c(3.1415, "foo"))
+</code></pre>
+
+<h3 id="8-_Computing_Basic_Statistics">8. Computing Basic Statistics</h3>
+<pre><code class="r">
+mean(x)
+median(x)
+sd(x)
+var(x)
+cor(x,y)
+cov(x,y)
+</code></pre>
+
+<h3 id="9-_Initializing_a_Data_Frame_form_Column_Data">9. Initializing a Data Frame form Column Data</h3>
+<pre><code class="r">
+dfrm <- data.frame(v1, v2, v3, f1, f2)
+dfrm <- as.data.frame(list.of.vectors)
+dfrm <- data.frame(pred1, pred2, pred3, resp)
+dfrm <- data.frame(p1=pred1, p2=pred2, p3=pred3, r=resp)
+</code></pre>
+
+<h3 id="10-_Selecting_Data_Frame_Columns_by_Position">10. Selecting Data Frame Columns by Position</h3>
+<pre><code class="r">
+dfrm[[n]]
+dfrm[n]
+dfrm[c(n_1, n_2, ..., n_k)]
+dfrm[, n]
+dfrm[, c(n_1, n_2, ..., n_k)]
+dfrm[, vec, drop=FALSE]
+</code></pre>
+
+<h3 id="11-_Selecting_Data_Frame_Columns_by_Name">11. Selecting Data Frame Columns by Name</h3>
+<pre><code class="r">
+dfrm[[anme]]
+dfrm$name
+dfrm["name"]
+dfrm[c("name_1", "name_2", ..., "name_k")]
+dfrm[, "name"]
+dfrm[, c("name_1", "name_2", ..., "name_k")]
+</code></pre>
+
+<h3 id="12-_Forming_a_Confidence_Interval_for_a_Mean">12. Forming a Confidence Interval for a Mean</h3>
+<pre><code class="r">
+x <- rnorm(50, mean=100, sd=50)
+t.test(x)
+t.test(x, conf.level=0.99)
+</code></pre>
+
+
+<h3 id="13-_Forming_a_Confidence_Interval_for_a_Proportion">13. Forming a Confidence Interval for a Proportion</h3>
+<pre><code class="r">
+prop.test(n, x)
+prop.test(6, 9)
+prop.test(n, x,,p, conf.level=0.99) # 99% confidence level
+</code></pre>
+
+
+<h3 id="14-_Comparing_the_Means_of_Two_Samples">14. Comparing the Means of Two Samples</h3>
+<pre><code class="r">
+t.test(x, y)
+t.test(x, y, paired=TRUE)
+</code></pre>
+
+<h3 id="15-_Testing_a_Correlation_for_Significance">15. Testing a Correlation for Significance</h3>
+<pre><code class="r">
+cor.test(x, y)
+cor.test(x, y, method="Spearman")
+</code></pre>
+
+<h3 id="16-_Creating_a_Scatter_Plot">16. Creating a Scatter Plot</h3>
+<pre><code class="r">
+plot(x, y)
+plot(dfrm)
+</code></pre>
+
+<h3 id="17-_Creating_a_Bar_Chart">17. Creating a Bar Chart</h3>
+<pre><code class="r">
+barplot(c(height1, height2, height3))
+
+barplot(heights,
+        main="Mean Temp. by Month"
+        names.arg=c("May", "Jun", "July", "Aug", "Sep"),
+        ylab="Temp (deg. F)")
+</code></pre>
+
+
+<h3 id="18-_Creating_a_Box_Plot">18. Creating a Box Plot</h3>
+<pre><code class="r">
+boxplot(x)
+</code></pre>
+
+<h3 id="19-_Creating_a_Histogram">19. Creating a Histogram</h3>
+<pre><code class="r">
+data(Cars93, package="MASS")
+hist(Cars93$MPG.city)
+hist(Cars93$MPG.city, 20)
+hist(Cars93$MPG.city, 20, main="City MPG (1993)", xlab="MPG")
+</code></pre>
+
+<h3 id="20-_Performing_Simple_Linear_Regression">20. Performing Simple Linear Regression</h3>
+<pre><code class="r">
+lm(y ~ x)
+lm(y ~ x, data=dfrm) # Take x and y from dfrm
+</code></pre>
+
+
+<h3 id="21-_Performing_Multiple_Linear_Regression">21. Performing Multiple Linear Regression</h3>
+<pre><code class="r">
+y=c(6.584519, 6.425215, 7.830578, 2.757777, 5.794566, 7.314611, 2.533638, 8.696910, 6.304464, 8.095094)
+u=c(0.79939065, -2.31338537, 1.71736899, 1.27652888, 0.39643488, 1.82247760, -1.34186107, 0.75946803, 0.92000133, 1.02341093)
+v=c(2.7971413, 2.7836201, 2.7570401, 0.4191765, 2.3785468, 1.8291302, 2.3472593, 3.4028180, 2.0654513, 2.6729252)
+w=c(4.366557, 4.515084, 3.865557, 2.547935, 3.265971, 4.518522, 2.570884, 4.442560, 2.835248, 3.868573)
+lm(y ~ u + v + w)
+lm(y ~ u + v + w, data=dfrm)
+</code></pre>
+
+
+<h3 id="22-_Getting_Regression_Statistics">22. Getting Regression Statistics</h3>
+<pre><code class="r">
+y=c(6.584519, 6.425215, 7.830578, 2.757777, 5.794566, 7.314611, 2.533638, 8.696910, 6.304464, 8.095094)
+u=c(0.79939065, -2.31338537, 1.71736899, 1.27652888, 0.39643488, 1.82247760, -1.34186107, 0.75946803, 0.92000133, 1.02341093)
+v=c(2.7971413, 2.7836201, 2.7570401, 0.4191765, 2.3785468, 1.8291302, 2.3472593, 3.4028180, 2.0654513, 2.6729252)
+w=c(4.366557, 4.515084, 3.865557, 2.547935, 3.265971, 4.518522, 2.570884, 4.442560, 2.835248, 3.868573)
+m <- lm(y ~ u + v + w)
+summary(m)
+anova(m)
+coefficients(m)
+coef(m)
+confint(m)
+deviance(m)
+effects(m)
+fitted(m)
+residuals(m)
+resid(m)
+vcov(m)
+</code></pre>
+
+<h3 id="23-_Diagnosing_a_Linear_Regression">23. Diagnosing a Linear Regression</h3>
+<pre><code class="r">
+m <- lm(y ~ x)
+plot(m)
+
+library(car)
+outlier.test(m)
+</code></pre>
+
+<h3 id="24-_Predicting_New_Values">24. Predicting New Values</h3>
+<pre><code class="r">
+m <- lm(y ~ u + v + w)
+preds <- data.frame(u=3.1, v=4.0, w=5.5)
+predict(m, newdata=preds)
+preds <- data.frame(
+        u=c(3.0, 3.1, 3.2, 3.3),
+        v=c(3.9, 4.0, 4.1, 4.2),
+        w=c(5.3, 5.5, 5,7, 5.9) )
+predict(m, newdata=preds)
+</code></pre>
+
+<h3 id="25-_Accessing_the_Functions_in_a_Package">25. Accessing the Functions in a Package</h3>
+<pre><code class="r">
+library(packagename)
+library(MASS)
+lda(f ~ x + y)
+detach(package:MASS)
+</code></pre>
+
+<h3 id="Chinese_Translation">Chinese Translation</h3>
+<ul>
+<li>Chen Gang has translated <a href="http://gossipcoder.com/?tag=r%E5%85%A5%E9%97%A825%E6%8B%9B" target="_blank">some sections</a> of this book.</li>
+<li>Yu Guangchuang has recreated <a href="http://ygc.name/2011/08/17/ggplot2-version-figures-25-recipes-started-r/" target="_blank">the figures</a> of this book</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_fb">Facebook</a>
+  <a class="jiathis_button_twitter">Twitter</a>
+  <a class="jiathis_button_email">邮件</a>
+  <a class="jiathis_button_print">打印</a>
+
+  <a href="http://www.jiathis.com/share?uid=" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2012/07/04/it-academic-project-management/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2012/06/25/opensource-hardware/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
