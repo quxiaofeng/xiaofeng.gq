@@ -645,227 +645,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="Update_History">Update History</h2>
-<h3 id="R2013a">R2013a</h3>
-<p>First introduced</p>
-<blockquote>
-<ul>
-<li><p><code>matlab.unittest</code>  package, an xUnit-style testing framework for the MATLAB language that allows writing and running unit tests, and analyzing test results</p>
-<p> <a href="http://www.mathworks.com/support/2014a/matlab/8.3/demos/matlab-unit-test-framework-in-release-2013a.html" target="_blank">New MATLAB Unit Testing Framework</a> (9 min, 24 sec)</p>
-<p> For information about the matlab.unittest package, see <a href="http://www.mathworks.com/help/releases/R2013a/matlab/matlab-unit-test-framework.html" target="_blank">Unit Testing Framework</a>.</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="R2013b">R2013b</h3>
-<p>Updated</p>
-<blockquote>
-<ul>
-<li><p>Functions for writing, executing, and verifying tests using the <code>matlab.unittest</code> testing framework without creating custom classes</p>
-<p> As an alternative to writing object-oriented tests, the MATLAB xUnit-style testing framework now provides function-based writing, execution, and verification of tests. For more information, see <a href="http://www.mathworks.com/help/releases/R2013b/matlab/matlab-unit-test-framework.html" target="_blank">Unit Testing Framework</a>. For an example of function–based test writing, see <a href="http://www.mathworks.com/help/releases/R2013b/matlab/matlab_prog/write-simple-test-case-with-functions.html" target="_blank">Write Simple Test Case Using Functions</a>.</p>
-</li>
-<li><p>New fixture and plugin features for <code>matlab.unittest</code> testing framework</p>
-<p> The <code>matlab.unittest</code> testing framework now provides four customized fixtures to ease the creation of setup and teardown code. You can use these fixtures to change the current working folder, add a folder to the MATLAB path, suppress the display of warnings, and create a temporary folder. For more information, see <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.fixtures.html" target="_blank"><code>matlab.unittest.fixtures</code></a>.</p>
-<p> To share these fixtures across test classes, use the new SharedTestFixtures class attribute of <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.testcaseclass.html" target="_blank">TestCase</a>. The <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.testcase.getsharedtestfixtures.html" target="_blank">getSharedTestFixtures</a> method of <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.testcaseclass.html" target="_blank">TestCase</a> provides access to the shared fixtures. You also can use fixtures within a test function by calling the <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.testcase.applyfixture.html" target="_blank">applyFixture</a> method of <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.testcaseclass.html" target="_blank">TestCase</a>.</p>
-<p> To pause execution of a test and enter debug mode upon a failure or uncaught error, you can add the new plugin, <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.plugins.stoponfailurespluginclass.html" target="_blank">StopOnFailuresPlugin</a> to the test runner. For more information, see <a href="http://www.mathworks.com/help/releases/R2013b/matlab/ref/matlab.unittest.plugins.html" target="_blank"><code>matlab.unittest.plugins</code></a>.</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="R2014a">R2014a</h3>
-<p>Improved</p>
-<blockquote>
-<ul>
-<li><p>Custom plugins in unit testing framework</p>
-<p> The <code>matlab.unittest</code> testing framework provides an interface class, <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.testrunnerplugin-class.html" target="_blank"><code>matlab.unittest.plugins.TestRunnerPlugin</code></a>, to create custom plugins and extend the <code>TestRunner</code>. For more information, see <a href="http://www.mathworks.com/help/matlab/matlab_prog/write-plugins-to-extend-testrunner.html" target="_blank">Write Plugins to Extend TestRunner</a> and <a href="http://www.mathworks.com/help/matlab/matlab_prog/create-custom-plugin.html" target="_blank">Create Custom Plugin</a>.</p>
-</li>
-<li><p>Test parameterization and selection in unit testing framework</p>
-<p> Test authors can write tests that are parameterized to combine and execute over lists of data. For more information, see <a href="http://www.mathworks.com/help/matlab/matlab_prog/create-basic-parameterized-test.html" target="_blank">Create Basic Parameterized Test</a> and <a href="http://www.mathworks.com/help/matlab/matlab_prog/create-advanced-parameterized-test.html" target="_blank">Create Advanced Parameterized Test</a>.</p>
-<p> The <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testsuite.selectif.html" target="_blank"><code>matlab.unittest.TestSuite.selectIf</code> </a>method, combined with classes in the <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.selectors.html" target="_blank"><code>matlab.unittest.selectors</code></a> package, allows for the improved selection of tests included in the test suite.</p>
-</li>
-<li><p><code>matlab.unittest</code> plugin for Test Anything Protocol (TAP) output</p>
-<p> The <code>matlab.unittest</code> testing framework provides a plugin that produces a Test Anything Protocol (TAP) stream. This plugin allows integration of MATLAB unit test results into third-party systems that recognize the Test Anything Protocol such as continuous integration systems. For more information, see the <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.tapplugin-class.html" target="_blank"><code>matlab.unittest.plugins.TAPPlugin</code></a> documentation.</p>
-</li>
-<li><p>Output stream direction for <code>matlab.unittest</code> plugins</p>
-<p> The <code>matlab.unittest</code> testing framework provides a means to redirect text output from several plugins to standard output (<a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.tostandardoutput-class.html" target="_blank">ToStandardOutput</a>) or to a file (<a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.tofile-class.html" target="_blank">ToFile</a>). Output stream direction is supported for the <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.diagnosticsvalidationplugin-class.html" target="_blank">DiagnosticsValidationPlugin</a>, <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.failurediagnosticsplugin-class.html" target="_blank">FailureDiagnosticsPlugin</a>, <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.tapplugin-class.html" target="_blank">TAPPlugin</a>, and <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.testsuiteprogressplugin-class.html" target="_blank">TestSuiteProgressPlugin</a> plugins.</p>
-<p> Additionally, the <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.outputstream-class.html" target="_blank"><code>OutputStream</code></a> class provides an interface for test authors to create custom output streams.</p>
-</li>
-<li><p>Comparator for MATLAB objects in unit testing framework</p>
-<p> The <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.constraints.publicpropertycomparator-class.html" target="_blank">PublicPropertyComparator</a> can be used with the <a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.constraints.isequalto-class.html" target="_blank">IsEqualTo</a> constraint to compare public properties of MATLAB objects recursively.</p>
-</li>
-<li><p><code>isdiag</code>, <code>isbanded</code>, <code>issymmetric</code>, <code>ishermitian</code>, <code>istril</code>, <code>istriu</code>, and <code>bandwidth</code> functions for testing matrix structure</p>
-<p> The following functions test various aspects of matrix structure and are useful in simplifying numerical algorithms.</p>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/ishermitian.html" target="_blank"><code>ishermitian</code></a> determines if a matrix is Hermitian or skew-Hermitian.</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/issymmetric.html" target="_blank"><code>issymmetric</code></a> determines if a matrix is symmetric or skew-symmetric.</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/istriu.html" target="_blank"><code>istriu</code></a> determines if a matrix is upper-triangular.</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/istril.html" target="_blank"><code>istril</code></a> determines if a matrix is lower-triangular.</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/isdiag.html" target="_blank"><code>isdiag</code></a> determines if a matrix is diagonal.</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/bandwidth.html" target="_blank"><code>bandwidth</code></a> returns the upper and lower bandwidth of a matrix.</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/isbanded.html" target="_blank"><code>isbanded</code></a> determines if a matrix is within the specified upper and lower bandwidths.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="Unit_Testing_Framework_ 单元测试框架 "><a href="http://www.mathworks.com/help/matlab/matlab-unit-test-framework.html" target="_blank">Unit Testing Framework</a> 单元测试框架</h2>
-<p>Write and run tests for MATLAB® programs<br>为 MATLAB 程序编写和运行测试</p>
-<ul>
-<li><p><a href="http://www.mathworks.com/help/matlab/write-unit-tests.html" target="_blank">Write Unit Tests</a> 编写单元测试<br>Assemble test methods into test-case classes<br>将各个测试方法组合成测试用例类</p>
-</li>
-<li><p><a href="http://www.mathworks.com/help/matlab/run-unit-tests.html" target="_blank">Run Unit Tests</a> 运行单元测试<br>Run test suites in the testing framework<br>在测试框架中运行测试用例集</p>
-</li>
-<li><p><a href="http://www.mathworks.com/help/matlab/analyze-test-results.html" target="_blank">Analyze Test Results</a> 分析测试结果<br>Use test results to identify failures<br>使用测试结果来分析程序</p>
-</li>
-</ul>
-<h2 id="Write_Unit_Tests_ 编写单元测试 "><a href="http://www.mathworks.com/help/matlab/write-unit-tests-1.html" target="_blank">Write Unit Tests 编写单元测试</a></h2>
-<p>Assemble test methods into test-case classes<br>将各个测试方法组合成测试用例类 </p>
-<p>The <em>matlab.unittest</em> package is an xUnit-style, unit-testing framework for MATLAB®. To test a MATLAB program, write a test case using qualifications, which are methods for testing values and responding to failures. The test case contains test functions and test fixtures (setup and teardown code).<br><em>matlab.unittest</em>包是 xUnit 风格的 matlab 程序测试框架。</p>
-<h3 id="Functions_ 函数 ">Functions 函数</h3>
-<blockquote>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/functiontests.html" target="_blank"><code>functiontests</code></a><ul>
-<li>Create array of tests from handles to local functions</li>
-<li>使用局部函数指针生成测试组</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="Classes_ 类 ">Classes 类</h3>
-<blockquote>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testcaseclass.html" target="_blank"><code>matlab.unittest.TestCase</code></a><ul>
-<li>Superclass of all <em>matlab.unittest</em> test classes </li>
-<li>所有<em>matlab.unittest</em>测试类的基类</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="Packages_ 包 ">Packages 包</h3>
-<blockquote>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.html" target="_blank"><code>matlab.unittest</code> </a><ul>
-<li>Summary of packages and classes in MATLAB Unit Test Framework   </li>
-<li>MATLAB 单元测试框架类函数包和函数类的集合   </li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.constraints.html" target="_blank"><code>matlab.unittest.constraints</code></a><ul>
-<li>Summary of classes in MATLAB Constraints Interface  </li>
-<li>MATLAB 限制（验证）接口函数类的集合（验证各种限制条件的函数类）  </li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.diagnostics.html" target="_blank"><code>matlab.unittest.diagnostics</code></a><ul>
-<li>Summary of classes in MATLAB Diagnostics Interface  </li>
-<li>MATLAB 诊断接口函数类的集合（测试失败时用来诊断的函数类）  </li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.fixtures.html" target="_blank"><code>matlab.unittest.fixtures</code></a><ul>
-<li>Summary of classes in MATLAB Fixtures Interface  </li>
-<li>MATLAB 环境接口函数类的集合（准备和清理测试环境的函数类）</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.qualifications.html" target="_blank"><code>matlab.unittest.qualifications</code></a><ul>
-<li>Summary of classes in MATLAB Qualifications Interface  </li>
-<li>MATLAB 资格（验证）接口函数类（测试例外处理的函数类）</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="Run_Unit_Tests_ 运行单元测试 "><a href="http://www.mathworks.com/help/matlab/run-unit-tests-1.html" target="_blank">Run Unit Tests 运行单元测试</a></h2>
-<p>Run test suites in the testing framework<br>在测试框架下运行测试套件</p>
-<h3 id="Functions_ 函数 -1">Functions 函数</h3>
-<blockquote>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/runtests.html" target="_blank"><code>runtests</code></a><ul>
-<li>Run set of tests</li>
-<li>运行测试用例集</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testcase.run.html" target="_blank"><code>matlab.unittest.TestCase.run</code></a><ul>
-<li>Run TestCase test</li>
-<li>运行 TestCase 测试用例</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testsuite.run.html" target="_blank"><code>matlab.unittest.TestSuite.run</code></a><ul>
-<li>Run TestSuite array using TestRunner object configured for text output</li>
-<li>使用带有文本输出配置的 TestRunner 运行 TestSuite 测试用例组</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testrunner.run.html" target="_blank"><code>matlab.unittest.TestRunner.run</code></a><ul>
-<li>Run all tests in TestSuite array</li>
-<li>运行 TestSuite 组中的所有测试用例</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/functiontests.html" target="_blank"><code>matlab.unittest.TestRunner.addPlugin</code></a><ul>
-<li>Add plugin to TestRunner object</li>
-<li>向 TestRunner 对象中添加插件</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="Classes_ 类 -1">Classes 类</h3>
-<blockquote>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testsuite-class.html" target="_blank"><code>matlab.unittest.TestSuite</code></a> <ul>
-<li>Class for grouping tests to run</li>
-<li>运行测试用例组</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.test-class.html" target="_blank"><code>matlab.unittest.Test</code></a> <ul>
-<li>Specification of a single test method</li>
-<li>单独的测试方法函数定义</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testrunner-class.html" target="_blank"><code>matlab.unittest.TestRunner</code></a> <ul>
-<li>Class for running tests in <code>matlab.unittest</code> framework</li>
-<li>运行 <code>matlab.unittest</code> 单元测试的框架类</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="Packages_ 包 -1">Packages 包</h3>
-<blockquote>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.parameters.html" target="_blank"><code>matlab.unittest.parameters</code></a><ul>
-<li>Summary of classes associated with MATLAB Unit Test parameters  </li>
-<li>MATLAB 单元测试参数函数类集合</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.html" target="_blank"><code>matlab.unittest.plugins</code></a><ul>
-<li>Summary of classes in MATLAB Plugins Interface</li>
-<li>MATLAB 插件接口函数类集合 </li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.plugins.plugindata.html" target="_blank"><code>matlab.unittest.plugins.plugindata</code></a><ul>
-<li>Summary of classes in MATLAB Plugin Data Interface</li>
-<li>MATLAB 插件数据接口函数类集合</li>
-</ul>
-</li>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.selectors.html" target="_blank"><code>matlab.unittest.selectors</code></a><ul>
-<li>Summary of classes in MATLAB Selectors Interface</li>
-<li>MATLAB 筛选接口函数类集合  </li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="Analyze_Test_Results_ 分析测试结果 "><a href="http://www.mathworks.com/help/matlab/analyze-test-results-1.html" target="_blank">Analyze Test Results 分析测试结果</a></h2>
-<p>Use test results to identify failures<br>使用测试结果来鉴定出错原因</p>
-<h3 id="Classes_ 类 -1">Classes 类</h3>
-<blockquote>
-<ul>
-<li><a href="http://www.mathworks.com/help/matlab/ref/matlab.unittest.testresult-class.html" target="_blank"><code>matlab.unittest.TestResult</code></a> <ul>
-<li>Result of running test suite</li>
-<li>测试用例套件的运行结果</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="Related_Information_ 相关信息 ">Related Information 相关信息</h2>
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/XUnit" target="_blank">http://en.wikipedia.org/wiki/XUnit</a>  </li>
-<li><a href="http://xunitpatterns.com/Four%20Phase%20Test.html" target="_blank">http://xunitpatterns.com/Four%20Phase%20Test.html</a></li>
-</ul>
-<h2 id="Other_Testing_Resources">Other Testing Resources</h2>
-<ul>
-<li><a href="http://igloo-testing.org/" target="_blank">Igloo - BDD Style Unit Testing for C++</a></li>
-</ul>
+        <p>Classes, How-tos and Examples.</p>
 
       
     </div>
@@ -910,124 +690,10 @@
   <div class="post-content">
     <header>
       
-      <time datetime="2013-04-07T16:00:00.000Z"><a href="/2013/04/08/matlabr2013a/">Monday, Apr 8 2013, 12:00:00</a></time>
+      <time datetime="2013-04-01T11:52:07.000Z"><a href="/2013/04/01/time-management/">Monday, Apr 1 2013, 07:52:07</a></time>
 
   
-    <h1 class="title"><a href="/2013/04/08/matlabr2013a/">Matlab R2013a New Features</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/coding/">coding</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/matlab/">matlab</a>, <a href="/tags/coding/">coding</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h1 id="MATLAB_R2013a_New_Features">MATLAB R2013a New Features</h1>
-<p>R2013a (Version 8.1) - Released 7 Mar 2013</p>
-<p><a href="http://www.mathworks.com/help/matlab/release-notes.html" target="_blank">Detailed Release Notes</a></p>
-<p><a href="http://blogs.mathworks.com/pick/2013/03/08/r2013a-is-live/" target="_blank">Official Blog Post</a></p>
-<h2 id="Desktop">Desktop</h2>
-<ul>
-<li><p>Option to add separators between controls in the quick access toolbar</p>
-</li>
-<li><p>Additional icon choices, auto-scaled thumbnails, and text-formatting options for customizing descriptions of MATLAB apps</p>
-</li>
-<li><p>Left-aligned table of contents for navigating in the Help browser and online Documentation Center</p>
-</li>
-</ul>
-<h2 id="Language_and_Programming">Language and Programming</h2>
-<ul>
-<li><p><strong>matlab.unittest</strong> package, an xUnit-style testing framework for the MATLAB language that allows writing and running unit tests and analyzing test results</p>
-</li>
-<li><p><strong>strsplit</strong> and <strong>strjoin</strong> functions for splitting and joining strings</p>
-</li>
-</ul>
-<h2 id="Mathematics">Mathematics</h2>
-<ul>
-<li><p><strong>scatteredInterpolant</strong> and <strong>griddedInterpolant</strong> support for extrapolation</p>
-</li>
-<li><p>Syntax for <strong>ones</strong>, <strong>zeros</strong>, and other functions for creating arrays that match attributes of an existing variable</p>
-</li>
-<li><p>Integer type support for <strong>prod</strong>, <strong>cumsum</strong>, <strong>cumprod</strong>, <strong>median</strong>, <strong>mode</strong>, and other number theory functions</p>
-</li>
-</ul>
-<h2 id="Data_Import_and_Export">Data Import and Export</h2>
-<ul>
-<li><p>Reading and writing indexed and grayscale AVI files with <strong>VideoReader</strong> and <strong>VideoWriter</strong> objects</p>
-</li>
-<li><p>Writing MPEG-4 H.264 files on Mac with <strong>VideoWriter</strong> object</p>
-</li>
-<li><p><strong>Tiff</strong> object improvements for reading and writing RGB-class <strong>TIFF</strong> images</p>
-</li>
-</ul>
-<h2 id="Performance">Performance</h2>
-<ul>
-<li><p><strong>fft</strong> function performance improvements on computers with new Intel and AMD processors</p>
-</li>
-<li><p>permute function performance Improvements for 3-D and higher dimensional arrays</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2013/04/08/matlabr2013a/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2013/04/08/matlabr2013a/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2013/04/08/matlabr2013a/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2013-03-31T16:00:00.000Z"><a href="/2013/04/01/time-management/">Monday, Apr 1 2013, 12:00:00</a></time>
-
-  
-    <h1 class="title"><a href="/2013/04/01/time-management/">26 Time Management Hacks I Wish I&amp;#39;d Known at 20</a></h1>
+    <h1 class="title"><a href="/2013/04/01/time-management/">26 Time Management Hacks I Wish I&#39;d Known at 20</a></h1>
   
 
 
@@ -1041,7 +707,7 @@
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/tags/time management/">time management</a>, <a href="/tags/slide/">slide</a>
+    <a href="/tags/time management/">time management</a>, <a href="/tags/presentation/">presentation</a>
   </div>
 
 <div class="clear"></div>
@@ -1073,6 +739,76 @@ allowfullscreen webkitallowfullscreen mozallowfullscreen><br></iframe>
           <div class="alignright"> 
             <a href="http://csxfqu.tk/2013/04/01/time-management/#comment" class="comment-link">
               <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2013/04/01/time-management/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-11-20T11:53:53.000Z"><a href="/2012/11/20/image-quality-evaluation/">Tuesday, Nov 20 2012, 07:53:53</a></time>
+
+  
+    <h1 class="title"><a href="/2012/11/20/image-quality-evaluation/">Image Quality Enhancement And Evaluation</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/academic/">academic</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/academy/">academy</a>, <a href="/tags/paper/">paper</a>, <a href="/tags/research/">research</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>How to enhangce and evaluate the image quality of a biometrics system.</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/11/20/image-quality-evaluation/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/11/20/image-quality-evaluation/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/11/20/image-quality-evaluation/">&nbsp;
               </span>
             </a>
           </div>
