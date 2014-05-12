@@ -1,0 +1,347 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>A SWIG Example | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="A SWIG example interfacing a windows dll to python.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="A SWIG Example"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-icon-57.png">
+  <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72.png">
+  <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114.png">
+  <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144.png">
+
+
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2014-03-01T09:58:51.000Z"><a href="/2014/03/01/swig-example/">Saturday, Mar 1 2014, 05:58:51</a></time>
+
+  
+    <h1 class="title">A SWIG Example</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/coding/">coding</a>, <a href="/tags/python/">python</a>, <a href="/tags/C/">C</a>, <a href="/tags/C++/">C++</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="SWIG"><a href="http://www.swig.org" target="_blank">SWIG</a></h2>
+<p>SWIG is stand along software development tool. It connects code programmed in C and C++ with many high-level programming languages including python. SWIG is used to parse C/C++ interfaces and generate the ‘glue code’ required for the above target languages to call into the C/C++ code. </p>
+<a id="more"></a>
+
+<p>The idea of SWIG is to create a dynamic python library module, which calls the SDK DLL. The structure is shown below.</p>
+<figure><br>  <img src="http://i.imgur.com/rPhlR7E.png"><br>  <figcaption><br>  SWIG interfacing principle<br>  </figcaption><br></figure>
+
+<p>The SWIG compiles the DLL and H files under the instruction of the .i file (SWIG configuring file). The SWIG project generates the Python Dynamic Library file (pyd). This pyd file can be imported to python.</p>
+<h2 id="A_Basic_But_Not_Simple_Example">A Basic But Not Simple Example</h2>
+<ul>
+<li><a href="https://github.com/quxiaofeng/swig-cpp-class-dll-wrapping-test" target="_blank">github repo</a></li>
+</ul>
+<h3 id="1-_Make_a_little_DLL_project-">1. Make a little DLL project.</h3>
+<p>In the repo, this little DLL project is <strong>xiaoAdd</strong>. There is a <strong>class AddTest</strong>. This class has only one useful <strong>member function add</strong>.</p>
+<p><code>AddTest.h</code></p>
+<pre><code><span class="comment">/* AddTest.h */</span>
+<span class="preprocessor">#<span class="keyword">pragma</span> once</span>
+
+class __declspec(dllexport) AddTest
+{
+<span class="keyword">public</span>:
+    <span class="title">AddTest</span>(<span class="keyword">void</span>);
+    ~AddTest(<span class="keyword">void</span>);
+    <span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b);
+};
+</code></pre><p><code>AddTest.cpp</code></p>
+<pre><code><span class="comment">/* AddTest.cpp */</span>
+<span class="preprocessor">#include "AddTest.h"</span>
+
+AddTest::AddTest(<span class="keyword">void</span>)
+{
+}
+
+AddTest::~AddTest(<span class="keyword">void</span>)
+{
+}
+
+<span class="keyword">int</span> AddTest::add(<span class="keyword">int</span> a, <span class="keyword">int</span> b)
+{
+    <span class="keyword">return</span> a+b;
+}
+</code></pre><p>Compile this project and get the results.</p>
+<pre><code>xiaoAdd<span class="preprocessor">.dll</span>
+xiaoAdd<span class="preprocessor">.lib</span>
+xiaoAdd<span class="preprocessor">.pdb</span>
+</code></pre><h3 id="2-_Make_a_Python_dynamic_module">2. Make a Python dynamic module</h3>
+<p>In the github repo, this module is xiaoA</p>
+<p><em>AddTest.h</em></p>
+<pre><code><span class="comment">/* AddTest.h */</span>
+<span class="preprocessor">#<span class="keyword">pragma</span> once</span>
+
+class __declspec(dllimport)AddTest
+{
+<span class="keyword">public</span>:
+    <span class="title">AddTest</span>(<span class="keyword">void</span>);
+    ~AddTest(<span class="keyword">void</span>);
+    <span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b);
+};
+</code></pre><p><em>xiaoAddModule.i</em></p>
+<pre><code><span class="comment">/* xiaoAddModule.i */</span>
+<span class="tag">%<span class="title">module</span></span> xiaoAddModule
+<span class="tag">
+%{
+/* Put header files here or function declarations like below */
+#include "AddTest.h"
+%}</span>
+<span class="tag">
+%<span class="title">include</span></span> &lt;windows.i&gt;
+<span class="tag">%<span class="title">include</span></span> "AddTest.h"
+</code></pre><h4 id="1-_Compile_the_xiaoAddModule-i_for_xiaoAddModule_wrap-cxx-">1. Compile the xiaoAddModule.i for xiaoAddModule_wrap.cxx.</h4>
+<h4 id="2-_Build_the_project_(Reference)_including">2. Build the project (<a href="http://stackoverflow.com/questions/11693047/how-to-create-a-dll-with-swig-from-visual-studio-2010" target="_blank">Reference</a>) including</h4>
+<pre><code>xiaoAddModule_wrap<span class="preprocessor">.cxx</span>
+AddTest<span class="preprocessor">.h</span>
+xiaoAdd<span class="preprocessor">.dll</span>
+xiaoAdd<span class="preprocessor">.lib</span>
+</code></pre><h4 id="3-_Get_the_results">3. Get the results</h4>
+<pre><code>_xiaoAddModule<span class="preprocessor">.exp</span>
+_xiaoAddModule<span class="preprocessor">.lib</span>
+_xiaoAddModule<span class="preprocessor">.pdb</span>
+_xiaoAddModule<span class="preprocessor">.pyd</span>
+xiaoAddModule<span class="preprocessor">.py</span>
+xiaoAddmodule<span class="preprocessor">.pyc</span>
+</code></pre><h4 id="4-_Write_the_Python_script_within_the_folder_where_above_results_are_located-">4. Write the Python script within the folder where above results are located.</h4>
+<p><code>test.py</code></p>
+<pre><code><span class="comment"># test.py</span>
+<span class="keyword">import</span> xiaoAddModule
+instance = xiaoAddModule.AddTest()
+<span class="keyword">print</span> <span class="string">'The result of 2 + 3 = %r'</span> % (instance.add(<span class="number">2</span>,<span class="number">3</span>))
+wait = input(<span class="string">"PRESS ENTER TO EXIT."</span>)
+</code></pre><h2 id="A_Complex_Solution_For_A_Complex_Example">A Complex Solution For A Complex Example</h2>
+<p>When wrapping a complex 3rd party library, there are lots of classes and functions. We want to keep this interface nice and clean. A C++ wrapper is implemented as shown below.</p>
+<figure><br>  <img src="http://i.imgur.com/lHar1Ig.png"><br>  <figcaption><br>  Double layer wrapping<br>  </figcaption><br></figure>
+
+
+      
+    </div>
+    <footer>
+      
+          
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2014/03/02/matlab-coding-style/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2014/02/28/ctypes-example/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2014/03/01/swig-example/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2012-2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div>
+</footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>A Little ctypes Example | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="A simple ctypes example interfacing a windows dll to python.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="A Little ctypes Example"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-icon-57.png">
+  <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72.png">
+  <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114.png">
+  <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144.png">
+
+
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2014-02-28T11:27:07.000Z"><a href="/2014/02/28/ctypes-example/">Friday, Feb 28 2014, 07:27:07</a></time>
+
+  
+    <h1 class="title">A Little ctypes Example</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/python/">python</a>, <a href="/tags/c/">c</a>, <a href="/tags/c++/">c++</a>, <a href="/tags/note/">note</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>A simple ctypes example interfacing a windows dll to python.</p>
+<p><a id="more"></a></p>
+<h2 id="The_ctypes_package">The ctypes package</h2>
+<ul>
+<li><a href="http://starship.python.net/crew/theller/ctypes/" target="_blank">Homepage</a></li>
+</ul>
+<p>“ctypes” is an advanced ffi (Foreign Function Interface) , and it has been included in the standard distribution of python since 2.5.</p>
+<p>“ctypes allows to call functions in dlls/shared libraries and has extensive facilities to create, access and manipulate simple and complicated C data types in Python - in other words: wrap libraries in pure Python. It is even possible to implement C callback functions in pure Python.”</p>
+<p>In essence, ctypes find the name of C functions in the dll file and execute the function code directly. It provides a very easy and effective way to call C functions from python. A simple example is shown below.</p>
+<h2 id="A_Simple_Example">A Simple Example</h2>
+<pre><code><span class="keyword">from</span> ctypes <span class="keyword">import</span> *
+user32 = windll.LoadLibrary(<span class="string">'user32.dll'</span>) <span class="comment"># load dll</span>
+user32.MessageBoxA(<span class="number">0</span>, <span class="string">'Ctypes is cool!'</span>, <span class="string">'Ctypes'</span>, <span class="number">0</span>)
+<span class="comment"># call message box function</span>
+</code></pre><p>First, the ctypes package is imported to current file. Then the user32.dll is loaded as variant user32. (user32.dll is a basic windows dynamic library. It is pre-installed in every windows operating system.) After the loading of user32 library, we can call MessageBoxA function, which is in the user32 library as an ordinary python method. The MessageBoxA pops up a message box over the desktop. The parameters defined the text and title of this message box as shown below.</p>
+<figure><br>  <img src="http://i.imgur.com/EsDsYsI.png"><br>  <figcaption><br>  Message box called by python<br>  </figcaption><br></figure>
+
+<p>In this calling process, no lower level code is need. DLL functions can be called solely by python.</p>
+<p>However, a critical problem is that the ctypes package only supports C function or C++ function without Class feature. <strong>It does not support C++ Class.</strong></p>
+<h2 id="A_Failed_C++_Class_Example">A Failed C++ Class Example</h2>
+<p>The C function name saving in the dll file is identical with one in the source file. Nevertheless, the C++ function is not. For example, a function name is “enum ePiCommType CPDIdev::DiscoverCnx(int)” in source file. In the DLL file, the function name is “?DiscoverCnx@CPDIdev@@UAE?AW4ePiCommType@@H@Z” as shown in the figure below. The ctypes package can resolve latter one as the former one. That is how it can call C functions.</p>
+<figure><br>  <img src="http://i.imgur.com/O6Gc5oz.png"><br>  <figcaption><br>  The C++ function name in the DLL file under the inspection tool<br>  </figcaption><br></figure>
+
+<p>The names of functions can be inspected by “<a href="http://www.dependencywalker.com/" target="_blank">Dependency Walker</a>“.</p>
+<figure><br>  <img src="http://i.imgur.com/3I3AWXk.png"><br>  <figcaption><br>  Dependency Walker Homepage<br>  </figcaption><br></figure>
+
+<p>In addition, the python can find the function with the help of the ctypes package in a similar way as shown below.</p>
+<figure><br>  <img src="http://i.imgur.com/d0Ku9wE.png"><br>  <figcaption><br>  Python find a function pointer in the DLL file<br>  </figcaption><br></figure>
+
+<p>The address of the function “enum ePiCommType CPDIdev::DiscoverCnx(int)” is found in 0x01D65828. However, it raised an exception when it is being called as shown below.</p>
+<figure><br>  <img src="http://i.imgur.com/WluRzwI.png"><br>  <figcaption><br>  Exception raised when called by python<br>  </figcaption><br></figure>
+
+<p>This exception is raised because the ctypes does not support C++ class. In a C++ class, the member function rewrites member variants, which are out of the range of the function. That is why the system raised an access violation exception.</p>
+
+      
+    </div>
+    <footer>
+      
+          
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2014/03/01/swig-example/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2014/02/27/canopy-welcome-issue/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2014/02/28/ctypes-example/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2012-2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div>
+</footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>

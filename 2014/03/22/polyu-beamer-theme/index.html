@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PolyU Beamer Theme | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="A polyu Beamer template">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="PolyU Beamer Theme"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-icon-57.png">
+  <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72.png">
+  <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114.png">
+  <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144.png">
+
+
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="photo">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      
+        <img src="http://i.imgur.com/NlTejiH.jpg">
+      
+        <img src="http://i.imgur.com/RwKwlNG.jpg">
+      
+        <img src="http://i.imgur.com/0zqAyWG.png">
+      
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2014-03-22T08:05:03.000Z"><a href="/2014/03/22/polyu-beamer-theme/">Saturday, Mar 22 2014, 04:05:03</a></time>
+
+  
+    <h1 class="title">PolyU Beamer Theme</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/latex/">latex</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/LaTeX/">LaTeX</a>, <a href="/tags/beamer/">beamer</a>, <a href="/tags/presentation/">presentation</a>, <a href="/tags/writing/">writing</a>, <a href="/tags/PolyU/">PolyU</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>A polyu Beamer template</p>
+<a id="more"></a>
+
+<h2 id="GitHub_Repo">GitHub Repo</h2>
+<p><a href="https://github.com/quxiaofeng/PolyU_thesis_template" target="_blank">https://github.com/quxiaofeng/PolyU_thesis_template</a></p>
+<h2 id="About_This_Theme">About This Theme</h2>
+<p>This a beamer theme created for The Hong Kong Polytechnic University.</p>
+<h2 id="Dependencies">Dependencies</h2>
+<ol>
+<li>Need Beamer (of course)</li>
+<li>Need picins package in</li>
+</ol>
+<p><pre><code class="bat"><br>\texmf-local\tex\latex\local\<br></code><pre></p>
+<h3 id="Settings">Settings</h3>
+<p><pre><code class="latex"><br>\usepackage[<br>    compress,<br>    %minimal,<br>    %nonav,<br>    red,<br>    %gold,<br>    %blue,<br>    numbers,<br>    %nologo,<br>    polyu,<br>    %comp,<br>    %forty,<br>    %seventyfive,<br>]<br>{beamerthemeHongKong}<br></code><pre></p>
+<ul>
+<li>“compress” option is recommended. It provides a short header and information about slides structure.</li>
+<li>“minimal” option provides a simplest framework.</li>
+<li>“nonav” can suppress the navigating buttons on lower right-hand corner.</li>
+<li>“red” option is the default and the only implemented color option.</li>
+<li>“gold” option is not ready. It is inspired by the 75th anniversary ceremony. The link to the guidelines are found but dead. I am trying to get the access.</li>
+<li>“blue” option is ready. It is inspired by the Computing Department 45th anniversary logo.</li>
+<li>“numbers” option is the page number on the bottom left-hand corner.</li>
+<li>“nologo” option enables the solo usage of color theme without PolyU logos on title page and headers.</li>
+<li>“polyu” option is default option and it enables whether it exist or not.</li>
+<li>“comp” option is to include the computing logo in the title page and the head banner.</li>
+<li>“forty” option is to use the Computing Department 40th anniversary logo in the title page and the head banner.</li>
+<li>“seventyfive” option is to use the PolyU 75th anniversary logo in the title page and the head banner.</li>
+</ul>
+<h2 id="Template">Template</h2>
+<ul>
+<li>CTeX suite was the design target, and CJK is used for the Chinese support.</li>
+<li>Now it will change to be compiled with texlive 2012 or above.</li>
+</ul>
+<h2 id="About_the_design">About the design</h2>
+<h3 id="Layout">Layout</h3>
+<p>The layout of this theme is based on the work done by <a href="http://cassens.org/" target="_blank">Jorg Cassens</a> and <a href="http://www.tcs.uni-luebeck.de/mitarbeiter/tantau/" target="_blank">Till Tantau</a> as shown in themes/theme/beamerthemeHongKong.sty.</p>
+<p>This PolyU theme is a modification of the <a href="http://story.idi.ntnu.no/~cassens/blog/archives/39-A-Beamer-theme-for-NTNU.html" target="_blank">NTNU Beamer theme</a>. The general layout is same. The only differences are the color set and logos.</p>
+<p>The aim of this modification is to create a nice and tidy PolyU theme using NTNU or the shadow style.</p>
+<h3 id="Color">Color</h3>
+<ul>
+<li>The majority of colors are various kinds of deep and light brick red.</li>
+<li>The RGB values are extracted from PolyU official website before. Though I asked computing office for these files, I got nothing.</li>
+<li>Now PolyU VI standard is found, but only a little is added into this theme. More needs to be done.<ol>
+<li>Update color values according to the <a href="http://www.polyu.edu.hk/cpa/polyu/index.php?option=com_content&amp;view=article&amp;id=156&amp;Itemid=48" target="_blank">PolyU VI</a>.</li>
+<li>Check PolyU standard PPT template. Though the whole design will maintain, defects and false usage of polyu elements should be fixed.</li>
+</ol>
+</li>
+</ul>
+<figure><br>  <img src="http://i.imgur.com/j1Nl1FR.png"><br>  <figcaption><br>  The traditional PolyU theme with the red color and the polyu logo<br>  </figcaption><br></figure>
+
+
+
+<h2 id="COMP_40_Anniversary_Theme_comp_and_forty">COMP 40 Anniversary Theme <code>comp</code> and <code>forty</code></h2>
+<p>The new banners and logos</p>
+<figure><br>  <img src="http://i.imgur.com/RwKwlNG.jpg"><br>  <figcaption><br>  New cmputing logo<br>  </figcaption><br></figure>
+
+<figure><br>  <img src="http://i.imgur.com/NlTejiH.jpg"><br>  <figcaption><br>  Computing 40th anniversary logo<br>  </figcaption><br></figure>
+
+<p>And new color called <code>blue</code></p>
+<ul>
+<li>polyublue <code>(0, 140, 215) #008C7D</code>.</li>
+<li>polyugreen <code>(143, 195,32) #8FC320</code>.</li>
+<li>polyuicyblue<code>(83, 195,241) #53C3F1</code>.</li>
+</ul>
+<h4 id="comp_and_blue"><code>comp</code> and <code>blue</code></h4>
+<figure><br>  <img src="http://i.imgur.com/4OGjxSA.jpg"><br>  <figcaption><br>  An example with comp logo and blue color<br>  </figcaption><br></figure>
+
+<h4 id="forty_and_blue"><code>forty</code> and <code>blue</code></h4>
+<figure><br>  <img src="http://i.imgur.com/f4fARax.jpg"><br>  <figcaption><br>  An example with the forty logo and the blue color<br>  </figcaption><br></figure>
+
+<h4 id="polyu,_forty_and_blue"><code>polyu</code>, <code>forty</code> and <code>blue</code></h4>
+<figure><br>  <img src="http://i.imgur.com/AqpXt7C.jpg"><br>  <figcaption><br>  An example with both the forty and the polyu logos and the blue color<br>  </figcaption><br></figure>
+
+<h4 id="polyu,_comp_and_red"><code>polyu</code>, <code>comp</code> and <code>red</code></h4>
+<figure><br>  <img src="http://i.imgur.com/aPY8hKY.jpg"><br>  <figcaption><br>  An example with both the comp and the polyu logos and the red color<br>  </figcaption><br></figure>
+
+<p><strong>Actually, there are may different combinations. Just have fun.</strong></p>
+<h2 id="PolyU_75_Anniversary_Theme_seventyfive_and_gold">PolyU 75 Anniversary Theme <code>seventyfive</code> and <code>gold</code></h2>
+<figure><br>  <img src="http://i.imgur.com/0zqAyWG.png"><br>  <figcaption><br>  The PolyU 75th anniversary logo<br>  </figcaption><br></figure>
+
+<figure><br>  <img src="http://i.imgur.com/n9luJJI.jpg"><br>  <figcaption><br>  An example with both the seventyfive logos and the gold color<br>  </figcaption><br></figure>
+
+<h2 id="TODO">TODO</h2>
+<ol>
+<li><del>Update with PolyU VI</del>.</li>
+<li><del>Add a gold setting following <a href="http://75.polyu.hk/" target="_blank">PolyU’s 75th Anniversary</a> color style. found the guidelines link <a href="https://www2.polyu.edu.hk/Script/staff/cpa/Staff/75th_Guidelines/" target="_blank">https://www2.polyu.edu.hk/Script/staff/cpa/Staff/75th_Guidelines/</a> in this page <a href="http://www.polyu.edu.hk/cpa/75thanniversary/index.php?route=gallery/seventyfivethanniversaryidentity" target="_blank">http://www.polyu.edu.hk/cpa/75thanniversary/index.php?route=gallery/seventyfivethanniversaryidentity</a>. Have to contact <a href="http://www.polyu.edu.hk/~its/aboutits/aboutits_04.html" target="_blank">ITS</a>. If this attempt failed, the logo was designed by Mr Freeman Lau Siu-hong. Try to <a href="http://www.freemanlau.com/en/index.html" target="_blank">contact him</a>.</del></li>
+<li>Fine tuning of the color and other config.</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+          
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2014/03/23/polyu-thesis-template/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2014/03/19/first-written-english-course-note/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2014/03/22/polyu-beamer-theme/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2012-2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div>
+</footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
