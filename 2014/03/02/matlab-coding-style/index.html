@@ -120,65 +120,65 @@
 <a id="more"></a>
 
 <h4 id="Help_Comment">Help Comment</h4>
-<pre><code><span class="tag">    %<span class="title">ONE</span></span> Complete help comment of function.
-<span class="tag">    %</span>   debug_state = CheckDebugStatus(debug_state) parse a general debug
-<span class="tag">    %</span>   description to a standard logical value.
-<span class="tag">    %</span>
-<span class="tag">    %</span>
-<span class="tag">    %</span>   It returns true (in a debugging state) if the input is
-<span class="tag">    %</span>      1, true, 'debug', 'test'.
-<span class="tag">    %</span>   It returns false (in a non-debugging state) if the input is
-<span class="tag">    %</span>      0, false, 'release', 'run'.
-<span class="tag">    %</span>   Default (blank) input leads to false. (Not debugging)
-<span class="tag">    %</span>
-<span class="tag">    %</span>
-<span class="tag">    %</span>   After using this function, debug related code in scripts and functions
-<span class="tag">    %</span>   can be simply surrounded by
-<span class="tag">    %</span>
-<span class="tag">    %</span>       if debug_state
-<span class="tag">    %</span>           ...
-<span class="tag">    %</span>       end
-<span class="tag">    %</span>
-<span class="tag">    %</span>
-<span class="tag">    %</span>   In addition, the function using CheckDebugStatus can be formatted as
-<span class="tag">    %</span>
-<span class="tag">    %</span>      function [ result ] = Test(vars, debug)
-<span class="tag">    %</span>
-<span class="tag">    %</span>          debug = CheckDebugStatus( debug );
-<span class="tag">    %</span>
-<span class="tag">    %</span>          if debug
-<span class="tag">    %</span>              display 'debugging';
-<span class="tag">    %</span>              result = 'debugging';
-<span class="tag">    %</span>          else
-<span class="tag">    %</span>              result = 'running';
-<span class="tag">    %</span>          end
-<span class="tag">    %</span>          display(result);
-<span class="tag">    %</span>      end
-<span class="tag">    %</span>
-<span class="tag">    %</span>   For more information, see &lt;a href="matlab:
-<span class="tag">    %</span>   web('https://github.com/quxiaofeng/balance')"&gt;balance&lt;/a&gt;.
-</code></pre><h2 id="Debug_State_in_Balance_(github)">Debug State in Balance (<a href="https://github.com/quxiaofeng/balance" target="_blank">github</a>)</h2>
+<pre><code><span class="tag">%<span class="title">ONE</span></span> Complete help comment of function.
+<span class="tag">%</span>   debug_state = CheckDebugStatus(debug_state) parse a general debug
+<span class="tag">%</span>   description to a standard logical value.
+<span class="tag">%</span>
+<span class="tag">%</span>
+<span class="tag">%</span>   It returns true (in a debugging state) if the input is
+<span class="tag">%</span>      1, true, 'debug', 'test'.
+<span class="tag">%</span>   It returns false (in a non-debugging state) if the input is
+<span class="tag">%</span>      0, false, 'release', 'run'.
+<span class="tag">%</span>   Default (blank) input leads to false. (Not debugging)
+<span class="tag">%</span>
+<span class="tag">%</span>
+<span class="tag">%</span>   After using this function, debug related code in scripts and functions
+<span class="tag">%</span>   can be simply surrounded by
+<span class="tag">%</span>
+<span class="tag">%</span>       if debug_state
+<span class="tag">%</span>           ...
+<span class="tag">%</span>       end
+<span class="tag">%</span>
+<span class="tag">%</span>
+<span class="tag">%</span>   In addition, the function using CheckDebugStatus can be formatted as
+<span class="tag">%</span>
+<span class="tag">%</span>      function [ result ] = Test(vars, debug)
+<span class="tag">%</span>
+<span class="tag">%</span>          debug = CheckDebugStatus( debug );
+<span class="tag">%</span>
+<span class="tag">%</span>          if debug
+<span class="tag">%</span>              display 'debugging';
+<span class="tag">%</span>              result = 'debugging';
+<span class="tag">%</span>          else
+<span class="tag">%</span>              result = 'running';
+<span class="tag">%</span>          end
+<span class="tag">%</span>          display(result);
+<span class="tag">%</span>      end
+<span class="tag">%</span>
+<span class="tag">%</span>   For more information, see &lt;a href="matlab:
+<span class="tag">%</span>   web('https://github.com/quxiaofeng/balance')"&gt;balance&lt;/a&gt;.
+</code></pre><h2 id="Debug_State_in_Balance_(GitHub)">Debug State in Balance (<a href="https://github.com/quxiaofeng/balance" target="_blank">GitHub</a>)</h2>
 <p>Using this <strong>CheckDebugState</strong> function, the debugging code can be separated from general code.</p>
 <pre><code>    It returns <span class="keyword">true</span> (<span class="keyword">in</span> a debugging state) <span class="keyword">if</span> the input <span class="keyword">is</span>
-           <span class="number">1</span>, <span class="keyword">true</span>, <span class="string">'debug'</span>, <span class="string">'test'</span>.
-        It returns <span class="keyword">false</span> (<span class="keyword">in</span> a non-debugging state) <span class="keyword">if</span> the input <span class="keyword">is</span>
-           <span class="number">0</span>, <span class="keyword">false</span>, <span class="string">'release'</span>, <span class="string">'run'</span>.
-        <span class="keyword">Default</span> (blank) input leads <span class="keyword">to</span> <span class="keyword">false</span>. (<span class="keyword">Not</span> debugging)
+        <span class="number">1</span>, <span class="keyword">true</span>, <span class="string">'debug'</span>, <span class="string">'test'</span>.
+    It returns <span class="keyword">false</span> (<span class="keyword">in</span> a non-debugging state) <span class="keyword">if</span> the input <span class="keyword">is</span>
+        <span class="number">0</span>, <span class="keyword">false</span>, <span class="string">'release'</span>, <span class="string">'run'</span>.
+    <span class="keyword">Default</span> (blank) input leads <span class="keyword">to</span> <span class="keyword">false</span>. (<span class="keyword">Not</span> debugging)
 
 
 <span class="function"><span class="keyword">function</span> [ <span class="title">result</span> ] = <span class="title">Test</span><span class="params">(vars, debug)</span>
 
-        <span class="title">debug</span> = <span class="title">CheckDebugStatus</span><span class="params">( debug )</span>;</span>
+    <span class="title">debug</span> = <span class="title">CheckDebugStatus</span><span class="params">( debug )</span>;</span>
 
-        <span class="keyword">if</span> debug
-            display <span class="string">'debugging'</span>;
-            <span class="keyword">result</span> = <span class="string">'debugging'</span>;
-        <span class="keyword">else</span>
-            <span class="keyword">result</span> = <span class="string">'running'</span>;
-        <span class="keyword">end</span>
-
-        display(<span class="keyword">result</span>);
+    <span class="keyword">if</span> debug
+        display <span class="string">'debugging'</span>;
+        <span class="keyword">result</span> = <span class="string">'debugging'</span>;
+    <span class="keyword">else</span>
+        <span class="keyword">result</span> = <span class="string">'running'</span>;
     <span class="keyword">end</span>
+
+    display(<span class="keyword">result</span>);
+<span class="keyword">end</span>
 </code></pre><h2 id="Books">Books</h2>
 <p><strong>Richard Johnson</strong> has published a <a href="http://www.cambridge.org/us/knowledge/isbn/item5745060/?site_locale=en_US" target="_blank">book</a> <strong>“The Elements of MATLAB Style”</strong> (also see <a href="https://sites.google.com/site/matlabstyleguidelines/" target="_blank">wiki</a>) 2010.</p>
 <figure><br>  <img src="http://i.stack.imgur.com/CpCOr.jpg"><br>  <figcaption><br>  The Elements of MATLAB Style<br>  </figcaption><br></figure>
@@ -194,29 +194,29 @@
 <li>Development</li>
 </ol>
 <p>Loren has a blog entry with the <a href="http://blogs.mathworks.com/loren/2011/02/10/book-review-the-elements-of-matlab-style/" target="_blank">review of the book</a>. I will just follow here line of comments:</p>
-<p><em>7</em> Split Long Code Lines at Graceful Points</p>
+<p><strong>7</strong>. Split Long Code Lines at Graceful Points</p>
 <p>I find this one useful as it is a total pain having to trail far off to the right in any editor, even though it is possible.</p>
-<p><em>10</em> Do Not Use Hard Tabs</p>
+<p><strong>10</strong>. Do Not Use Hard Tabs</p>
 <p>This helps keep sanity when working among a group with possibly different editing environments.</p>
-<p><em>43</em> Use Meaningful Names for Variables with a Large Scope</p>
+<p><strong>43</strong>. Use Meaningful Names for Variables with a Large Scope</p>
 <p>This makes code much easier to read, understand, and debug, if necessary.</p>
-<p><em>69</em> Name Functions for What They Do</p>
+<p><strong>69</strong>. Name Functions for What They Do</p>
 <p>Since functions perform an action, the name should include information about the action.</p>
-<p><em>86</em> Use Sortable Numbering in Data Filesnames</p>
+<p><strong>86</strong>. Use Sortable Numbering in Data Filesnames</p>
 <p>If you have many similar files of data, having a rational numbering scheme can only help you out. </p>
-<p><em>97</em> Be Sure That Comments Agree with the Code</p>
+<p><strong>97</strong>. Be Sure That Comments Agree with the Code</p>
 <p>I will never forget the time that my thesis advisor called me because he was really irritated. I had left him a copy of a Fortran program that had copious comments, the final one being “Ignore all the comments above; they were for a previous version.”</p>
-<p><em>135</em> Avoid Cryptic Code</p>
+<p><strong>135</strong>. Avoid Cryptic Code</p>
 <p>I have found that generally, writing cryptic code buys less than I expect in terms of good things, and more headaches than it warrants. On occasion, I have used cryptic code for performance in something time-critical. When I do, I try to comment it fully, including a straight-forward implementation in the comments which I have tested. That way, when the performance trade-offs change, I understand what the code is supposed to do and have two starting options for doing a code update.</p>
-<p><em>150</em>, <em>151</em> Minimize the Use of Global Variables and Minimize the Use of Global Constants</p>
+<p><strong>150</strong>, <strong>151</strong>. Minimize the Use of Global Variables and Minimize the Use of Global Constants</p>
 <p>I would say this even more strongly myself. There are superior techniques for dealing with information you want to share, whether they be function handles, classes and their properties, or some other methods. These techniques are much safer to use for many reasons - e.g., more easily controlled side effects, should any be desired, and code becomes more suitable for parallelism potentially.</p>
-<p><em>172</em> Use Parenthese</p>
+<p><strong>172</strong>. Use Parenthese</p>
 <p>Clarity of meaning is paramount, especially if others need to understand, modify, or translate the code.</p>
-<p><em>176</em> Avoid Use of eval When Possible</p>
+<p><strong>176</strong>. Avoid Use of eval When Possible</p>
 <p>I’m sure it doesn’t seem so to some MATLAB users, but eval is avoidable most of the time.</p>
-<p><em>185</em>-<em>188</em> The first of these is Avoid Complicated Conditional Expressions</p>
+<p><strong>185</strong>-<strong>188</strong>. The first of these is Avoid Complicated Conditional Expressions</p>
 <p>These entries contain some useful thoughts on dealing with conditional constructs, the ordering of the cases, etc.</p>
-<p><em>271</em>-<em>275</em> The first of these is Write Small Tests</p>
+<p><strong>271</strong>-<strong>275</strong>. The first of these is Write Small Tests</p>
 <p>I love that Richard has made testing a central tenet of this style guide. I don’t see how programmers function well without a robust test suite.</p>
 <ul>
 <li><a href="http://stackoverflow.com/questions/17453244/modern-matlab-codestyle-what-is-missing" target="_blank">Modern MATLAB codestyle: what is missing?</a> in <a href="http://stackoverflow.com/" target="_blank">StackOverflow</a></li>
