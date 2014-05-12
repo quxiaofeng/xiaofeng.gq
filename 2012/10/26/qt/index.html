@@ -1,0 +1,347 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Qt Notes and Online Resources | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="Qt setting for demo software design.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Qt Notes and Online Resources"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-icon-57.png">
+  <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72.png">
+  <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114.png">
+  <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144.png">
+
+
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-10-26T11:34:53.000Z"><a href="/2012/10/26/qt/">Friday, Oct 26 2012, 07:34:53</a></time>
+
+  
+    <h1 class="title">Qt Notes and Online Resources</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/coding/">coding</a>, <a href="/tags/gui/">gui</a>, <a href="/tags/cmd/">cmd</a>, <a href="/tags/C++/">C++</a>, <a href="/tags/Qt/">Qt</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Qt setting for demo software design.</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="http://qt-windows-binaries.googlecode.com/svn/site/QtWindowsBinaries" target="_blank">Qt Binaries For Windows</a></li>
+<li><a href="http://www.johanpaul.com/blog/2011/07/deploying-qt-and-qt-quick-applications-on-windows/" target="_blank">Deploying Qt and Qt Quick applications on Windows | Comments, Code and Qt.</a></li>
+<li><a href="http://www.geometrian.com/programming/tutorials/setup_Qt.txt" target="_blank">setup Qt</a></li>
+</ul>
+<h2 id="Qt_Documents,_Reference_and_Source_Code_Online">Qt Documents, Reference and Source Code Online</h2>
+<ul>
+<li><a href="http://doc.qt.digia.com/" target="_blank">Qt Online Reference</a>    </li>
+<li><a href="http://qt.gitorious.org/" target="_blank">All Qt projects source</a>    </li>
+<li><a href="http://qt.gitorious.org/qt/qt" target="_blank">Qt lib git repo</a>    </li>
+</ul>
+<h3 id="Qt_Static">Qt Static</h3>
+<p>A lot of people have been talking about this problem(see <a href="http://stackoverflow.com/questions/7836883/how-to-compile-qt-statically-under-windows" target="_blank">here</a>). <a href="http://qt-project.org/search/tag/static~build" target="_blank">So many posts</a> are talking about it, however it is still a pain in the back.<br>Even you did all the hard work, it still <a href="http://qt-project.org/faq/answer/why_does_a_statically_built_qt_use_the_dynamic_visual_studio_runtime_librar" target="_blank">links the visual studio runtimes dynamically</a>. Not to mention you have to <a href="http://stackoverflow.com/questions/1011197/qt-static-linking-and-deployment" target="_blank">modify your existing projects</a>. But <a href="http://projectgus.com/2011/09/developing-qt-apps-for-windows-using-linux-wine/" target="_blank">some people</a> have done this job, though it is with mingw32-gcc.    </p>
+<h4 id="Prepare">Prepare</h4>
+<ul>
+<li>Download <a href="http://qt-project.org/downloads" target="_blank">qt opensource 4.8.3</a>    </li>
+<li>Install Visual Studio 2010    </li>
+<li>Download and install <a href="http://strawberryperl.com/" target="_blank">Perl(Strawberryperl)</a>    </li>
+</ul>
+<h4 id="Compile_follow_this_guide">Compile follow this <a href="http://www.formortals.com/build-qt-static-small-microsoft-intel-gcc-compiler/" target="_blank">guide</a></h4>
+<ol>
+<li>copy qt source to a new folder(here 4.8.3 to ramdisk for speed)    </li>
+<li>edit make flags    </li>
+<li>open Visual Studio Command Line Prompt in Start Menu/MS Visual Studio 2010/Visual Studio Tools/    </li>
+<li><p>Configure QT as follows<br><em>build_static_qt.bat</em>   </p>
+<p> configure -release -opensource -static -no-ltcg -fast -no-exceptions -no-accessibility -no-stl -no-openvg -platform win32-msvc2010 -qt-zlib -qt-libpng -qt-libmng -qt-libtiff -qt-libjpeg -dsp -vcproj -incredibuild-xge -plugin-manifests -qmake -process -no-rtti -mmx -sse -sse2 -audio-backend -no-webkit -no-script -no-declarative -no-directwrite -arch windows -no-native-gestures -mp -saveconfig win32-msvc2010-static<br>y<br>nmake   </p>
+</li>
+</ol>
+<h2 id="Configuring_Qt_Static_Project">Configuring Qt Static Project</h2>
+<p>As said in <a href="http://www.formortals.com/how-to-statically-link-qt-4/" target="_blank">this post</a>.    </p>
+<h3 id="Qt_x64">Qt x64</h3>
+<ul>
+<li>According to <a href="http://qt-project.org/wiki/How_to_build_64bit_Qt_for_windows" target="_blank">this post</a>, the x64 support is not ready.    </li>
+</ul>
+<h3 id="Qt_Thread">Qt Thread</h3>
+<ul>
+<li><a href="http://blog.csdn.net/dbzhang800/article/details/6554104" target="_blank">Thread Basics Chinese Translation</a>, <a href="http://qt-project.org/doc/qt-4.8/thread-basics.html" target="_blank">Original Version</a>     </li>
+</ul>
+<h3 id="CDB_for_Qt_Debug">CDB for Qt Debug</h3>
+<ul>
+<li>Follow <a href="http://doc.qt.digia.com/qtcreator-2.4/creator-debugger-engines.html" target="_blank">this guide</a>    </li>
+<li><a href="http://msdn.microsoft.com/en-us/windows/hardware/gg463009" target="_blank">Here</a> is a collection of Windows Debugging tools     </li>
+<li>Windows 7 SDK web installer could be downloaded from <a href="http://www.microsoft.com/en-us/download/details.aspx?id=8279" target="_blank">here</a>.    </li>
+<li>Windows 7 SDK ISOs <a href="http://www.microsoft.com/en-us/download/details.aspx?id=8442" target="_blank">downloading page</a>    </li>
+<li>The configuration is like <a href="http://stackoverflow.com/questions/9975949/how-to-configure-cdb-in-qt-creator" target="_blank">this</a>.    </li>
+</ul>
+<h3 id="Qwt">Qwt</h3>
+<ul>
+<li><a href="http://qwt.sourceforge.net/index.html" target="_blank">Source and Docs Online</a>    </li>
+<li><a href="http://johnhforrest.com/2010/09/installing-qwt-on-windows/" target="_blank">A windows installing guide</a>    </li>
+</ul>
+<h3 id="BitRock_InstallBuilder_8_for_Qt"><a href="http://installbuilder.bitrock.com/download-installbuilder-for-qt-step-2.html" target="_blank">BitRock InstallBuilder 8 for Qt</a></h3>
+<h3 id="Other_Docs_and_Online_Resources">Other Docs and Online Resources</h3>
+<h4 id="Qt_Designer">Qt Designer</h4>
+<ul>
+<li><a href="http://stackoverflow.com/questions/3492739/auto-expanding-layout-with-qt-designer" target="_blank">Auto Resizing Layout</a>    </li>
+</ul>
+<h4 id="Qxt">Qxt</h4>
+<p>Qxt, an extension library for Qt, provides a suite of cross-platform utility classes to add functionality not readily available in the Qt toolkit by Digia.    </p>
+<ul>
+<li><a href="http://libqxt.bitbucket.org/doc/tip/index.html" target="_blank">Home page</a>    </li>
+</ul>
+<h4 id="Good_Questions_on_stackoverflow">Good Questions on stackoverflow</h4>
+<ul>
+<li><a href="http://stackoverflow.com/questions/10308425/redirect-stdcout-to-a-qtextedit" target="_blank">Redirect std::cout to a QTextEdit</a>     </li>
+<li><a href="http://stackoverflow.com/questions/4335331/custom-and-default-message-handler-in-qt" target="_blank">Custom and Default Message Handler in Qt</a>     </li>
+</ul>
+<h4 id="Qt_test_suite">Qt test suite</h4>
+<ul>
+<li><a href="http://www.froglogic.com/index.php" target="_blank">Squish Test Automation Suite</a>    <ul>
+<li><a href="http://www.froglogic.com/squish/gui-testing/editions/qt.php" target="_blank">Squish for Qt</a>     </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+          
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <span class="jiathis_txt">分享到：</span>
+  <a class="jiathis_button_weixin">微信</a>
+  <a class="jiathis_button_douban">豆瓣</a>
+  <a class="jiathis_button_tsina">新浪微博</a>
+  <a class="jiathis_button_fb">Facebook</a>
+  <a class="jiathis_button_twitter">Twitter</a>
+  <a class="jiathis_button_email">邮件</a>
+  <a class="jiathis_button_print">打印</a>
+
+  <a href="http://www.jiathis.com/share?uid=" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2012/10/27/latex-snippets/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2012/10/26/opencv/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2012/10/26/qt/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>

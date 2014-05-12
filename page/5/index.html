@@ -127,6 +127,814 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2012-10-25T16:00:00.000Z"><a href="/2012/10/26/opencv/">Friday, Oct 26 2012, 12:00:00</a></time>
+
+  
+    <h1 class="title"><a href="/2012/10/26/opencv/">OpenCV Environment Setting and Compiling</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/coding/">coding</a>, <a href="/tags/image processing/">image processing</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="Documents,_Reference_Manuals_and_Online_Resources">Documents, Reference Manuals and Online Resources</h2>
+<h3 id="OpenCV_Doc_Online">OpenCV Doc Online</h3>
+<ul>
+<li><a href="http://docs.opencv.org/" target="_blank">Current Reference Site</a></li>
+<li><a href="http://code.opencv.org/projects/opencv/wiki" target="_blank">WIKI</a>    </li>
+<li><a href="http://code.opencv.org/" target="_blank">Developer Site</a>     </li>
+<li><a href="http://www.opencv.org.cn/opencvdoc/2.3.2/html/index.html" target="_blank">OpenCV 2.3.2 Chinese Reference</a><br>Currently version 2.4.3 release candidate is out.    </li>
+</ul>
+<h3 id="OpenCV_2_Computer_Vision_Application_Programming_Cookbook">OpenCV 2 Computer Vision Application Programming Cookbook</h3>
+<ul>
+<li><a href="http://www.laganiere.name/opencvCookbook/" target="_blank">Author’s Website</a> including Errata, Code and Images     </li>
+</ul>
+<h2 id="OpenCV_Static">OpenCV Static</h2>
+<blockquote>
+<p><strong><a href="https://github.com/quxiaofeng/static_qt_opencv_app" target="_blank">Example Project</a></strong> </p>
+</blockquote>
+<p>The static OpenCV requires the qt static, and it can not be compiled without static qt lib.</p>
+<h3 id="Download_these_files">Download these files</h3>
+<ol>
+<li><a href="http://cmake.org/cmake/resources/software.html" target="_blank">CMake</a>    </li>
+<li><a href="http://sourceforge.net/projects/opencvlibrary/files/latest/download" target="_blank">OpenCV Library</a>    </li>
+<li><a href="http://www.developer.nokia.com/Develop/Qt/Tools/" target="_blank">QT SDK</a>    </li>
+</ol>
+<h3 id="Compiling_Steps">Compiling Steps</h3>
+<ol>
+<li>With preinstalled Visual Studio 2010     </li>
+<li>install QT SDK and update    </li>
+<li>unpack OpenCV-2.4.2.exe    </li>
+<li>configure opencv with cmake<br>Configure at least three times. First time for opencv options, second for the QT, third time finish all.    <ul>
+<li>Visual Studio 10(for msvc2010 x86 platform)    </li>
+<li>Check debug_info for Debug version    </li>
+<li>Check with_qt to add Qt support    </li>
+<li>QT_QMAKE_EXECUTABLE: QtSDK/Desktop/Qt/4.8.1/msvc2010/bin/qmake.exe for msvc 2010 qt    </li>
+<li>Check with_videoinput to add DirectShow support    </li>
+<li>Uncheck shared_libs to build static lib    </li>
+<li>Uncheck build_with_static_crt, because Qt links it dynamically. Maybe check when Qt is static compiled    </li>
+<li>Uncheck with_ffmpeg to avoid the opencv_ffmpeg.dll     </li>
+<li>Uncheck these to save time: docs/examples/package/perf_tests/tests    </li>
+</ul>
+</li>
+<li>Then generate    </li>
+<li>Open /output/path/OpenCV.sln with Visual Studio 2010    <ul>
+<li>select Debug/Release Win32 config    </li>
+<li>Build “ALL_BUILD” and wait for several minutes.    </li>
+<li>Build “CMakeTargets/INSTALL” and wait for several seconds    </li>
+</ul>
+</li>
+</ol>
+<h3 id="The_output">The output</h3>
+<pre><code>  output/path/<span class="keyword">install</span>
+                 bin/*.dll
+                 <span class="keyword">include</span>/*
+                 lib/*
+                 share/*
+</code></pre><h3 id="Excute_this_Ruby_Sript">Excute this Ruby Sript</h3>
+<p><em>tidy.rb</em></p>
+<pre><code>   <span class="keyword">require</span> <span class="string">'fileutils'</span>
+   <span class="constant">FileUtils</span>.mv(<span class="constant">Dir</span>.glob(<span class="string">'share/OpenCV/3rdparty/lib/*.lib'</span>), <span class="string">'lib/'</span>)
+   <span class="constant">FileUtils</span>.rm_rf(<span class="string">'share/'</span>)
+   <span class="constant">FileUtils</span>.rm_rf(<span class="string">'doc/'</span>)
+   <span class="constant">FileUtils</span>.rm(<span class="constant">Dir</span>.glob(<span class="string">'bin/*.exe'</span>), <span class="symbol">:force=&gt;true</span>)
+   <span class="constant">FileUtils</span>.rm(<span class="constant">Dir</span>.glob(<span class="string">'*.cmake'</span>), <span class="symbol">:force=&gt;true</span>)
+   <span class="constant">FileUtils</span>.rm(<span class="constant">Dir</span>.glob(<span class="string">'*~'</span>), <span class="symbol">:force=&gt;true</span>)
+   system(<span class="string">"7z a static_opencv_lib.7z lib include"</span>)
+</code></pre><blockquote>
+<p>dependencies of tidy.rb: Ruby, DevKit, fileutils</p>
+</blockquote>
+<h3 id="Then_use_this_config_in_Qt_pro_file">Then use this config in Qt pro file</h3>
+<p><em>Suppose the opencv static lib is placed in “../opencv_static_lib” folder</em></p>
+<pre><code>  win32 <span class="special">{</span>    
+      OPENCVDIR = "../opencv_static_lib"    
+      exists(<span class="formula">$$OPENCVDIR) <span class="special">{</span>    
+          DEFINES += USEOPENCV    
+          INCLUDEPATH += <span class="command">\ </span>   
+              $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/include     
+          DEPENDPATH += <span class="command">\ </span>   
+              <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/include
+          CONFIG(release, debug|release) <span class="special">{</span>
+              LIBS += -L$$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib <span class="command">\
+</span>                  -llibjasper <span class="command">\
+</span>                  -llibjpeg <span class="command">\
+</span>                  -llibpng <span class="command">\
+</span>                  -llibtiff <span class="command">\
+</span>                  -lopencv_calib3d242 <span class="command">\
+</span>                  -lopencv_contrib242 <span class="command">\
+</span>                  -lopencv_core242 <span class="command">\
+</span>                  -lopencv_features2d242 <span class="command">\
+</span>                  -lopencv_flann242 <span class="command">\
+</span>                  -lopencv_gpu242 <span class="command">\
+</span>                  -lopencv_highgui242 <span class="command">\
+</span>                  -lopencv_imgproc242 <span class="command">\
+</span>                  -lopencv_legacy242 <span class="command">\
+</span>                  -lopencv_ml242 <span class="command">\
+</span>                  -lopencv_nonfree242 <span class="command">\
+</span>                  -lopencv_objdetect242 <span class="command">\
+</span>                  -lopencv_photo242 <span class="command">\
+</span>                  -lopencv_stitching242 <span class="command">\
+</span>                  -lopencv_ts242 <span class="command">\
+</span>                  -lopencv_video242 <span class="command">\
+</span>                  -lopencv_videostab242 <span class="command">\
+</span>                  -lzlib
+              PRE_TARGETDEPS += <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libjasper.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libjpeg.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libpng.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libtiff.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_calib3d242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_contrib242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_core242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_features2d242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_flann242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_gpu242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_highgui242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_imgproc242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_legacy242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_ml242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_nonfree242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_objdetect242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_photo242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_stitching242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_ts242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_video242.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_videostab242.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/zlib.lib
+          <span class="special">}</span> else <span class="special">{</span>
+              LIBS += -L<span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib <span class="command">\
+</span>                  -llibjasperd <span class="command">\
+</span>                  -llibjpegd <span class="command">\
+</span>                  -llibpngd <span class="command">\
+</span>                  -llibtiffd <span class="command">\
+</span>                  -lopencv_calib3d242d <span class="command">\
+</span>                  -lopencv_contrib242d <span class="command">\
+</span>                  -lopencv_core242d <span class="command">\
+</span>                  -lopencv_features2d242d <span class="command">\
+</span>                  -lopencv_flann242d <span class="command">\
+</span>                  -lopencv_gpu242d <span class="command">\
+</span>                  -lopencv_highgui242d <span class="command">\
+</span>                  -lopencv_imgproc242d <span class="command">\
+</span>                  -lopencv_legacy242d <span class="command">\
+</span>                  -lopencv_ml242d <span class="command">\
+</span>                  -lopencv_nonfree242d <span class="command">\
+</span>                  -lopencv_objdetect242d <span class="command">\
+</span>                  -lopencv_photo242d <span class="command">\
+</span>                  -lopencv_stitching242d <span class="command">\
+</span>                  -lopencv_ts242d <span class="command">\
+</span>                  -lopencv_video242d <span class="command">\
+</span>                  -lopencv_videostab242d <span class="command">\
+</span>                  -lzlibd
+              PRE_TARGETDEPS += <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libjasperd.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libjpegd.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libpngd.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/libtiffd.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_calib3d242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_contrib242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_core242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_features2d242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_flann242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_gpu242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_highgui242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_imgproc242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_legacy242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_ml242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_nonfree242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_objdetect242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_photo242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_stitching242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_ts242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_video242d.lib <span class="command">\
+</span>                  $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/opencv_videostab242d.lib <span class="command">\
+</span>                  <span class="formula">$$<span class="special">{</span>OPENCVDIR<span class="special">}</span>/lib/zlibd.lib
+          <span class="special">}</span>
+          message("OpenCV libraries found in $$</span><span class="special">{</span>OPENCVDIR<span class="special">}</span>")
+      <span class="special">}</span> else <span class="special">{</span>
+          message("OpenCV libraries not found.")
+      <span class="special">}</span>
+  <span class="special">}</span>
+</code></pre><h3 id="Redundent_console">Redundent console</h3>
+<p><a href="http://comments.gmane.org/gmane.comp.lib.qt.general/30894" target="_blank">The file qt/mkspecs/features/qt.prf has some code that forces CONFIG += console for any program that uses testlib.</a></p>
+<p>Revise the highgui/windows_QT.h and windows_QT.cpp</p>
+<p><em>opencv/modules/highgui/src/windows_QT.cpp</em></p>
+<pre><code>  void CvWindow::keyPressEvent(QKeyEvent *evnt)    
+  {
+      <span class="keyword">...</span>
+      // Qt::Key qtkey = static_cast&lt;Qt::Key&gt;(key);
+      // char asciiCode = QTest::keyToAscii(qtkey);
+      // <span class="keyword">if</span> (asciiCode != <span class="number">0</span>)
+      //     key = static_cast&lt;int&gt;(asciiCode);
+      // <span class="keyword">else</span>
+          key = evnt-&gt;nativeVirtualKey(); //same codes as returned by GTK-based backend
+      <span class="keyword">...</span>
+  }
+</code></pre><p><em>opencv/modules/highgui/src/windows_QT.h</em></p>
+<pre><code>  // <span class="comment">#include &lt;QtTest/QTest&gt;</span>
+</code></pre><h3 id="TIFF_lib">TIFF lib</h3>
+<p>The calls to MessageBoxA and GetFocus made errors in libtiff. These two lines of code have to be commented out.</p>
+<p><em>opencv/3rdparty/libtiff/tif_win32.c</em></p>
+<pre><code>  static void    
+  Win32WarningHandler(const char* module, const char* fmt, va_list ap)
+  {
+      <span class="keyword">...</span>
+      //MessageBoxA(GetFocus(), szTmp, szTitle, MB_OK | MB_ICONINFORMATION);
+      <span class="keyword">...</span>
+  }
+
+  static void
+  Win32ErrorHandler(const char* module, const char* fmt, va_list ap)
+  {
+      <span class="keyword">...</span>
+      //MessageBoxA(GetFocus(), szTmp, szTitle, MB_OK | MB_ICONEXCLAMATION);
+      <span class="keyword">...</span>
+  }
+</code></pre><h2 id="OpenCV_HighGUI_no_logos_on_buttons">OpenCV HighGUI no logos on buttons</h2>
+<ul>
+<li>As stated in <a href="http://code.opencv.org/issues/2070" target="_blank">Bug #2070</a>    </li>
+<li>Harald Schmidt gave <a href="http://code.opencv.org/issues/2178" target="_blank">the Patch #2178</a> to sovle the problem and to improve the display strategy of logo displaying which is composed of two parts.    <ol>
+<li><a href="http://code.opencv.org/issues/2304" target="_blank">Patch 2304</a> is the modified HighGUI code. Download, then place the .h and .hpp files in folder opencv/modules/highgui/include/opencv2/highgui, and the .cpp and .c files in opencv/modules/highgui/srcfolders.    </li>
+<li><a href="http://code.opencv.org/issues/2303" target="_blank">Patch 2303</a> is the example project of these code.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Not Working</strong></p>
+<h3 id="Current_Solution">Current Solution</h3>
+<p>Display windows without buttons</p>
+<pre><code>  <span class="symbol">cv:</span><span class="symbol">:nameWindow</span>(<span class="string">"Original Image"</span>, <span class="constant">CV_GUI_NORMAL</span>);
+</code></pre><h2 id="OpenCV_DLL">OpenCV DLL</h2>
+<p>The opencv without qt support dll can not be run under qt.</p>
+<ol>
+<li>Check BUILD_SHARED_LIBS    </li>
+<li>Check BUILD_WITH_DEBUG_INFO    </li>
+</ol>
+<h2 id="Other_Interesting_Examples">Other Interesting Examples</h2>
+<ul>
+<li><a href="http://www.cnblogs.com/QLeelulu/archive/2012/02/08/2343260.html" target="_blank">Face Recogniton in Python and Node.js with opencv’s help</a>    </li>
+<li><a href="http://stackoverflow.com/questions/11347465/deployment-and-static-packaging-within-qt-creator-linking-qt-and-opencv-in-singl" target="_blank">Deployment and Static Packaging within QT Creator linking QT and OpenCV in single Executable</a>    </li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/10/26/opencv/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/10/26/opencv/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/10/26/opencv/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-10-03T09:03:22.000Z"><a href="/2012/10/03/mac-development-env/">Wednesday, Oct 3 2012, 05:03:22</a></time>
+
+  
+    <h1 class="title"><a href="/2012/10/03/mac-development-env/">Mac Development Env</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/apple/">apple</a>, <a href="/tags/news/">news</a>, <a href="/tags/entertainment/">entertainment</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="Virtual_Env">Virtual Env</h1>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/10/03/mac-development-env/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/10/03/mac-development-env/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/10/03/mac-development-env/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-09-29T11:35:52.000Z"><a href="/2012/09/29/ruby/">Saturday, Sep 29 2012, 07:35:52</a></time>
+
+  
+    <h1 class="title"><a href="/2012/09/29/ruby/">Ruby Config</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/ruby/">ruby</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Ruby environment settings.</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/09/29/ruby/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/09/29/ruby/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/29/ruby/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-09-29T09:02:23.000Z"><a href="/2012/09/29/rulers/">Saturday, Sep 29 2012, 05:02:23</a></time>
+
+  
+    <h1 class="title"><a href="/2012/09/29/rulers/">Paper Rulers</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/life/">life</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/user-friendly/">user-friendly</a>, <a href="/tags/design/">design</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="Display_Rulers">Display Rulers</h1>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/09/29/rulers/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/09/29/rulers/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/29/rulers/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-09-25T16:00:00.000Z"><a href="/2012/09/26/directory_watcher/">Wednesday, Sep 26 2012, 12:00:00</a></time>
+
+  
+    <h1 class="title"><a href="/2012/09/26/directory_watcher/">Ruby Directory_watcher</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/coding/">coding</a>, <a href="/tags/ruby/">ruby</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="Install_Ruby_Gem">Install Ruby Gem</h2>
+<pre><code>gem <span class="keyword">install</span> directory_watcher
+</code></pre><h2 id="Doc_Online"><a href="http://codeforpeople.rubyforge.org/directory_watcher/classes/DirectoryWatcher.html" target="_blank">Doc Online</a></h2>
+<h2 id="Source_Online"><a href="https://github.com/TwP/directory_watcher" target="_blank">Source Online</a></h2>
+<h2 id="Pandoc_Build_Daemon_Script">Pandoc Build Daemon Script</h2>
+<pre><code>require <span class="string">'directory_watcher'</span>
+
+dw = DirectoryWatcher.<span class="keyword">new</span> <span class="string">'.'</span>, :pre_load =&gt; <span class="keyword">true</span>
+dw.glob = <span class="string">'*.md'</span>
+dw.add_observer {|*args| args.each {|<span class="keyword">event</span>| puts <span class="keyword">event</span>}}
+
+dw.start
+gets      <span class="preprocessor"># when the user hits "enter" the script will terminate</span>
+dw.stop
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/09/26/directory_watcher/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/09/26/directory_watcher/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/26/directory_watcher/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-09-25T11:36:38.000Z"><a href="/2012/09/25/qt-snippets/">Tuesday, Sep 25 2012, 07:36:38</a></time>
+
+  
+    <h1 class="title"><a href="/2012/09/25/qt-snippets/">Qt Snippets</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/c++/">c++</a>, <a href="/tags/gui/">gui</a>, <a href="/tags/qt/">qt</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Useful qt snippets in the gui and image processing.</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/09/25/qt-snippets/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/09/25/qt-snippets/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/25/qt-snippets/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-09-19T11:43:45.000Z"><a href="/2012/09/19/gvim/">Wednesday, Sep 19 2012, 07:43:45</a></time>
+
+  
+    <h1 class="title"><a href="/2012/09/19/gvim/">gVim Configuration</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/software/">software</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Configuration files to display and write code and articles.</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/09/19/gvim/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/09/19/gvim/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/19/gvim/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-09-12T09:02:04.000Z"><a href="/2012/09/12/cancelable-biometrics/">Wednesday, Sep 12 2012, 05:02:04</a></time>
+
+  
+    <h1 class="title"><a href="/2012/09/12/cancelable-biometrics/">Cancelable Biometrics</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/academic/">academic</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/research/">research</a>, <a href="/tags/algorithm/">algorithm</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="Websites">Websites</h2>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2012/09/12/cancelable-biometrics/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+          <div class="alignright"> 
+            <a href="http://csxfqu.tk/2012/09/12/cancelable-biometrics/#comment" class="comment-link">
+              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/12/cancelable-biometrics/">&nbsp;
+              </span>
+            </a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2012-09-10T09:00:03.000Z"><a href="/2012/09/10/software-testing/">Monday, Sep 10 2012, 05:00:03</a></time>
 
   
@@ -244,779 +1052,6 @@
           <div class="alignright"> 
             <a href="http://csxfqu.tk/2012/09/07/writing-tips/#comment" class="comment-link">
               <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/07/writing-tips/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-09-07T08:58:34.000Z"><a href="/2012/09/07/diy-loose-leaf-system/">Friday, Sep 7 2012, 04:58:34</a></time>
-
-  
-    <h1 class="title"><a href="/2012/09/07/diy-loose-leaf-system/">DIY Loose Leaf System</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/life/">life</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/writing/">writing</a>, <a href="/tags/life/">life</a>, <a href="/tags/calendar/">calendar</a>, <a href="/tags/project management/">project management</a>, <a href="/tags/time management/">time management</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>用个人订制的活页来进行日程管理、流程规划与改进。</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/09/07/diy-loose-leaf-system/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/09/07/diy-loose-leaf-system/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/09/07/diy-loose-leaf-system/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-08-04T08:56:23.000Z"><a href="/2012/08/04/writing-tools/">Saturday, Aug 4 2012, 04:56:23</a></time>
-
-  
-    <h1 class="title"><a href="/2012/08/04/writing-tools/">Writing Tools</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/academic/">academic</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/research/">research</a>, <a href="/tags/writing/">writing</a>, <a href="/tags/paper/">paper</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h1 id="Writing_Helpers">Writing Helpers</h1>
-<h2 id="Online_Dictionary">Online Dictionary</h2>
-<ul>
-<li><a href="http://www.urbandictionary.com/" target="_blank">Urban Dictionary</a>    </li>
-<li>Wikitionary    </li>
-<li>“define: xxx” in google    </li>
-<li><a href="http://thesaurus.com/" target="_blank">Thesaurus</a>    </li>
-<li><a href="http://rcpce.engl.polyu.edu.hk/RACorpus/default.htm" target="_blank"><strong>Corpus of Research Articles</strong></a> by PolyU English Department    </li>
-<li><a href="http://forum.wordreference.com/index.php?s=7a7782c4c0a5f62355cb19813de51f3d" target="_blank">WordReference</a>    </li>
-<li><a href="http://english.stackexchange.com/" target="_blank">English Language &amp; Usage</a>    </li>
-<li><a href="http://googlefight.com/" target="_blank">Googlefight</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/08/04/writing-tools/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/08/04/writing-tools/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/08/04/writing-tools/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-08-03T07:23:56.000Z"><a href="/2012/08/03/coding-tools/">Friday, Aug 3 2012, 03:23:56</a></time>
-
-  
-    <h1 class="title"><a href="/2012/08/03/coding-tools/">Coding Tools</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/coding/">coding</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/coding/">coding</a>, <a href="/tags/software/">software</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="Reference">Reference</h2>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/08/03/coding-tools/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/08/03/coding-tools/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/08/03/coding-tools/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-07-24T16:00:00.000Z"><a href="/2012/07/25/notebooks/">Wednesday, Jul 25 2012, 12:00:00</a></time>
-
-  
-    <h1 class="title"><a href="/2012/07/25/notebooks/">My Laptop and Other Computers</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/life/">life</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/notebook/">notebook</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="ThinkPad_x230(i7-3520)"><a href="http://www.hknotebook.com/hkust2012/product/main.jsp?view=product&amp;pid=5&amp;brand=lenovo" target="_blank">ThinkPad x230(i7-3520)</a></h2>
-<h4 id="A_DREAM_COMES_TRUE"><em>A DREAM COMES TRUE</em></h4>
-<blockquote>
-<p>  3-year Intenational Warranty<br>  i7-3520M, 4MB Cache/2.9GHz/1600MHz FSB<br>  <strong>2 x 8GiB</strong> DDR3 1600MHz (Max. 16GB)<br>  <strong>128 GB M5Pro SSD</strong><br>  <strong>128 GB M4 mSATA SSD</strong><br>  <strong>16 GB SD card</strong>, as auxilary storage. 30 MiB/s writing speed<br>  12.5”, 1366 x 768<br>  720p HD Webcam<br>  Integrated Graphics<br>  Lithium Ion 6-cell/Up to 9.9 hours<br>  1.34kg  </p>
-</blockquote>
-<ul>
-<li>Plextor M5 Pro 128GB SSD Speed Test with AS SSD Benchmark(right after the system installation)    </li>
-</ul>
-<p><img src="http://i.imgur.com/Ku7gLqh.png" alt="SSD speed test"></p>
-<ul>
-<li>4 GiB RAM Disk Speed Test using DataRam    </li>
-</ul>
-<p><img src="http://i.imgur.com/opbKZd0.png" alt="RAM disk speed test"></p>
-<ul>
-<li>Windows Experience Index with SSD / 16 GiB RAM / 2 GiB Display RAM    </li>
-</ul>
-<p><img src="http://i.imgur.com/etXtAFC.png" alt="windows 7 experience index"></p>
-<p><strong>THANKS to ZHM.</strong></p>
-<h2 id="System_Test_After_Adding_the_mSATA_SSD">System Test After Adding the mSATA SSD</h2>
-<p><em>Some test are too slow to carry out.</em></p>
-<ul>
-<li>Main SSD with almost full files    </li>
-</ul>
-<p>The performance is still very good as just bought.</p>
-<p><img src="http://i.imgur.com/WP6peBZ.jpg" alt="PLEXTOR_PX-128M5_2012_10_15"></p>
-<ul>
-<li>RamDisk is still the best, over 10 times of SSD    </li>
-</ul>
-<p><img src="http://i.imgur.com/4PHbEKF.jpg" alt="RamDisk_2012_10_15"></p>
-<ul>
-<li>Crucial M4 128GB mSATA is slightly weaker than M5P. Not to mention it is empty.    </li>
-</ul>
-<p><img src="http://i.imgur.com/fZk4tlB.jpg" alt="M4-CT128M4SSD3_A_2012_10_15"></p>
-<p>And also here is <a href="http://www.storagereview.com/micron_realssd_c400_msata_ssd_review" target="_blank">a review of this mSATA SSD</a>.    </p>
-<ul>
-<li>Mobile HDD(the original hdd came with x230) with USB 3.0    </li>
-</ul>
-<p>The difference with SSD is obvious especially the random test.    </p>
-<p><img src="http://i.imgur.com/8thBkJB.jpg" alt="HITACHI_HTS72505_2012_10_15"> </p>
-<ul>
-<li>SanDisk Extreme 16GB Flash Disk    </li>
-</ul>
-<p>Extrodinary read, poor write and worst random.    </p>
-<p><img src="http://i.imgur.com/MeQ4Jv7.jpg" alt="SanDisk_Extreme__2012_10_15"></p>
-<ul>
-<li>SD Card 16GB    </li>
-</ul>
-<p>Worst at any field.    </p>
-<p><img src="http://i.imgur.com/6tQNnOk.jpg" alt="Ricoh_SD_Disk_De_2012_10_15"></p>
-<h2 id="XP_Installation_Guide_on_IVB_Platform"><a href="http://news.mydrivers.com/1/237/237098_all.htm" target="_blank">XP Installation Guide on IVB Platform</a></h2>
-<h2 id="x230_tips">x230 tips</h2>
-<ul>
-<li><p><a href="http://www.tpuser.idv.tw/wp/" target="_blank">The build and analysis</a>    </p>
-</li>
-<li><p><a href="http://www.notebookcheck.net/Lenovo-ThinkPad-X230-2306-2AU-Laptop-Review.75317.0.html" target="_blank">Review in depth</a>    </p>
-</li>
-<li><p>A confirmed <a href="http://forums.lenovo.com/t5/T400-T500-and-newer-T-series/T530-does-not-make-typical-ThinkPad-Power-Status-Beeps/td-p/788571/highlight/false" target="_blank">removal</a> of the power beep, and a VB script is attached as an alternate solution      </p>
-</li>
-<li><p>x230 user <a href="http://littlenine1221.pixnet.net/blog/post/91040924-%5B%E6%96%B0%E5%93%81%E5%88%86%E4%BA%AB%5D-lenovo-x230-%2B-sandisk-480gb-ssd-%2B-16gb-ram-%2Bg" target="_blank">experience and optimization</a>     </p>
-</li>
-<li><p>x230i mSATA SSD replacement <a href="http://www.5i01.cn/topicdetail.php?f=240&amp;t=2840788&amp;last=37435297" target="_blank">guide</a>     </p>
-</li>
-</ul>
-<h2 id="SSD_infos">SSD infos</h2>
-<ul>
-<li><strong>Plextor M5 Pro 128G</strong>, <a href="http://www.chiphell.com/thread-531991-1-1.html" target="_blank">Performance test</a>    </li>
-<li>famous <a href="http://thessdreview.com/" target="_blank">thessdreview.com</a>    </li>
-<li><a href="http://www.expreview.com/19604-all.html" target="_blank">SSD performance review</a>    </li>
-<li><a href="http://diy.pconline.com.cn/cpu/study_cpu/1203/2722291_all.html" target="_blank">Several Tips about SSD</a>     </li>
-<li><a href="http://article.pchome.net/content-1387324.html" target="_blank">Windows 7 tweaks</a>    </li>
-<li><a href="http://moonwulk.blogspot.hk/2010/07/windows-7-ssd.html" target="_blank">Win 7 optimizing</a>    </li>
-<li><a href="http://www.behardware.com/art/imprimer/860/" target="_blank">SSD 2012 roundup</a>     </li>
-<li><a href="http://www.seekxiu.com/article.aspx?id=12568" target="_blank"><strong>SSD 4 KiB Alignment Performance Test</strong></a>   </li>
-</ul>
-<h2 id="Demystifying_External_Hard_Disk">Demystifying External Hard Disk</h2>
-<ul>
-<li><a href="http://item.taobao.com/item.htm?id=18461252774" target="_blank">German Medion</a> USB 3.0 external hard disk case    </li>
-</ul>
-<h2 id="Several_considerations">Several considerations</h2>
-<ul>
-<li>SSD for performance and data security    </li>
-<li>i7 cpu for performance    </li>
-<li>Light weight for mobility    </li>
-</ul>
-<h2 id="Current_condition">Current condition</h2>
-<ul>
-<li>Thinkpad X230   <ul>
-<li>main working env   </li>
-<li>Windows 7 64bit    </li>
-<li>VirtualBox Ubuntu 13.10 64bit   </li>
-</ul>
-</li>
-<li>Two PCs in office    <ul>
-<li>One with Windows XP SP2 - PQ702a - quxiaofeng.no-ip.biz    </li>
-<li>One with Windows 8.1 - PQ702b - abrandy.no-ip.biz</li>
-<li>Fast enough</li>
-<li>Docs in both PCs synchronized with the Dropbox, and code with git (github or bitbucket)    </li>
-</ul>
-</li>
-<li>P8010    <ul>
-<li>Using by Jocelyn for office and entertainment purpose.    </li>
-</ul>
-</li>
-<li>M2010   <ul>
-<li>Given to Gavin</li>
-</ul>
-</li>
-<li>Home PC<ul>
-<li><a href="http://www.asus.com/Motherboards/P5G41TM_LX/overview/" target="_blank">Motherboards - P5G41T-M LX</a> </li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/07/25/notebooks/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/07/25/notebooks/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/07/25/notebooks/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-07-04T01:11:26.000Z"><a href="/2012/07/04/kindle-resources/">Wednesday, Jul 4 2012, 09:11:26</a></time>
-
-  
-    <h1 class="title"><a href="/2012/07/04/kindle-resources/">Kindle</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/life/">life</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/reading/">reading</a>, <a href="/tags/kindle/">kindle</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="Amazon_Kindle_Management">Amazon Kindle Management</h2>
-<ul>
-<li><a href="https://www.amazon.com/gp/digital/fiona/manage?ie=UTF8&amp;ref_=sa_menu_myk3&amp;#All" target="_blank">Homepage</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/07/04/kindle-resources/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/07/04/kindle-resources/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/07/04/kindle-resources/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-07-03T16:00:00.000Z"><a href="/2012/07/04/it-academic-project-management/">Wednesday, Jul 4 2012, 12:00:00</a></time>
-
-  
-    <h1 class="title"><a href="/2012/07/04/it-academic-project-management/">Academic Project Management in Computer and Electronics</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/academic/">academic</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/project management/">project management</a>, <a href="/tags/research/">research</a>, <a href="/tags/device/">device</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="To-Do_List">To-Do List</h2>
-<ul>
-<li>Read <em>PMBOK 4th edition in Chinese and English</em></li>
-<li>Read <em>The Project Manager’s Desk Reference</em></li>
-<li>To select some proper procedures for current projects</li>
-</ul>
-<h2 id="Project_Management_Software_and_Gant_Chart">Project Management Software and Gant Chart</h2>
-<h2 id="Important_Elements_on_Project_Management">Important Elements on Project Management</h2>
-<ul>
-<li>Resources<ul>
-<li>People</li>
-<li>Time</li>
-<li>Cost</li>
-<li>Code</li>
-<li>Paper</li>
-<li>Technology</li>
-<li>Theory</li>
-</ul>
-</li>
-<li>Schedule</li>
-<li>Productive Rate Evaluation</li>
-<li>Critical Path</li>
-<li>Goal</li>
-<li>Risk</li>
-</ul>
-<h1 id="Open_Source_Project_Management_Server">Open Source Project Management Server</h1>
-<ul>
-<li><a href="http://kunagi.org/" target="_blank">kunagi</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/07/04/it-academic-project-management/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/07/04/it-academic-project-management/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/07/04/it-academic-project-management/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-06-28T08:53:23.000Z"><a href="/2012/06/28/getting-started-with-r/">Thursday, Jun 28 2012, 04:53:23</a></time>
-
-  
-    <h1 class="title"><a href="/2012/06/28/getting-started-with-r/">Getting Started with R</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/coding/">coding</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/coding/">coding</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h3 id="1-_Downloading_and_Installing_R">1. Downloading and Installing R</h3>
-<ul>
-<li>R Studio</li>
-<li>R Language  </li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/06/28/getting-started-with-r/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/06/28/getting-started-with-r/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/06/28/getting-started-with-r/">&nbsp;
-              </span>
-            </a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2012-06-24T16:00:00.000Z"><a href="/2012/06/25/opensource-hardware/">Monday, Jun 25 2012, 12:00:00</a></time>
-
-  
-    <h1 class="title"><a href="/2012/06/25/opensource-hardware/">Open Source Hardware</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/hardware/">hardware</a>
-  </div>
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/chip/">chip</a>, <a href="/tags/circuit/">circuit</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <ul>
-<li><p>Graphics Library <a href="http://www.directfb.org/" target="_blank">DirectFB</a></p>
-</li>
-<li><p><a href="http://xinchejian.com/" target="_blank">新车间</a></p>
-</li>
-<li><p><a href="http://www.haxlr8r.com/" target="_blank">HAXLR8R</a> is a new kind of accelerator program.<br>For people who hack hardware and make things.</p>
-</li>
-<li><p><a href="http://www.seeedstudio.com/depot/" target="_blank">seeed</a></p>
-</li>
-<li><p><a href="http://www.makeblock.cc/" target="_blank">Makeblock</a></p>
-</li>
-<li><p><a href="http://solarpocketfactory.com/blogs/the-solar-pocket-pages-1" target="_blank">The Solar Pocket Factory</a></p>
-</li>
-<li><p><a href="http://www.chinaccelerator.com/" target="_blank">Chinaccelerator</a></p>
-</li>
-<li><p><a href="http://blog.csdn.net/lzt1983/article/details/7831524" target="_blank">A list of papers in top conferences about Distance Metric Learning</a></p>
-</li>
-<li><p><a href="http://techtalks.tv/talks/machine-learning-and-ai-via-brain-simulations/57862/" target="_blank">Machine Learning and AI via Brain simulations</a></p>
-</li>
-<li><p><a href="http://www.shervinemami.info/index.html" target="_blank">Shervin Emami’s Career Portfolio</a></p>
-</li>
-</ul>
-<h2 id="Guides_and_Wikis">Guides and Wikis</h2>
-<ul>
-<li><a href="http://www.52solution.com/article/articleinfo/id/80009270" target="_blank">A guide (in Chinese)</a>    </li>
-<li><a href="http://openxcplatform.com/" target="_blank">OpenXC Platform</a>    </li>
-<li><a href="http://en.wikipedia.org/wiki/Open-source_hardware" target="_blank">Open-source hardware wiki</a>    </li>
-<li><a href="http://zh.wikipedia.org/wiki/%E9%96%8B%E6%BA%90%E7%A1%AC%E4%BB%B6" target="_blank">Open-source hardware wiki (in Chinese)</a>    </li>
-<li><a href="http://www.arduino.cc/" target="_blank">Arduino</a>    </li>
-<li><a href="http://en.wikipedia.org/wiki/Arduino" target="_blank">Arduino wiki</a>    </li>
-<li><a href="http://makezine.com/arduino/" target="_blank">Make Arduino</a>    </li>
-<li><a href="http://en.wikipedia.org/wiki/Qi_hardware" target="_blank">Qi hardware wiki</a>     </li>
-<li><a href="http://www.opencollector.org/history/OpenDesignCircuits/reinoud_index.html" target="_blank">Open Design Circuits</a>     </li>
-<li><a href="http://maker.eefocus.com/archives/1295" target="_blank">Survey of Open Source Hardware (in Chinese)</a>    </li>
-<li><a href="http://graphics.stanford.edu/papers/fcam/" target="_blank">Frankencamera</a>    </li>
-<li><a href="http://blog.21ic.com/user1/8413/archives/2012/88556.html" target="_blank">Another Survey</a>    </li>
-</ul>
-<h2 id="Groups">Groups</h2>
-<ul>
-<li><a href="http://arduino.hk/" target="_blank">arduino.hk</a>   </li>
-<li><a href="http://summit.oshwa.org/" target="_blank">Open Hardware Summit</a>    </li>
-<li><a href="http://www.buglabs.net/ford-buglabs" target="_blank">Bug Labs</a>    </li>
-<li><a href="http://freedomdefined.org/OSHW" target="_blank">Open Source Hardware OSHW.org</a>   </li>
-</ul>
-<h2 id="Mainland_China">Mainland China</h2>
-<ul>
-<li><a href="http://www.orihard.com/ku.asp" target="_blank">Oriental Hardware Research Center</a>    </li>
-</ul>
-<h2 id="Chips">Chips</h2>
-<ul>
-<li><a href="http://www.ti.com/product/am3359" target="_blank">AM3359</a></li>
-</ul>
-<p><img src="http://i.imgur.com/MY53SRI.jpg" alt="AM3359"></p>
-<h2 id="Shops">Shops</h2>
-<ul>
-<li><a href="http://blog.dfrobot.com.cn/" target="_blank">DFRobot</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2012/06/25/opensource-hardware/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-          <div class="alignright"> 
-            <a href="http://csxfqu.tk/2012/06/25/opensource-hardware/#comment" class="comment-link">
-              <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="/2012/06/25/opensource-hardware/">&nbsp;
               </span>
             </a>
           </div>
