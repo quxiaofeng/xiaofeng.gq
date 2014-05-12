@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>gVim Configuration | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="configuration file to display and write code and articles.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="gVim Configuration"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-icon-57.png">
+  <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72.png">
+  <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114.png">
+  <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144.png">
+
+
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-09-19T11:43:45.000Z"><a href="/2012/gvim/">Wednesday, Sep 19 2012, 07:43:45</a></time>
+
+  
+    <h1 class="title">gVim Configuration</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/software/">software</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Configuration files to display and write code and articles.</p>
+<a id="more"></a>
+
+<h2 id="gVim_UTF-8_config_in_windows">gVim UTF-8 config in windows</h2>
+<pre><code><span class="string">"editing encoding
+let $LANG="</span>zh_CN<span class="built_in">.</span>UTF<span class="subst">-</span><span class="number">8</span><span class="string">"
+set langmenu=zh_cn.utf-8
+set termencoding=utf-8
+set encoding=utf-8
+
+"</span>reload menu <span class="keyword">with</span> UTF<span class="subst">-</span><span class="number">8</span> encoding
+source <span class="variable">$VIMRUNTIME</span>/delmenu<span class="built_in">.</span>vim
+source <span class="variable">$VIMRUNTIME</span>/menu<span class="built_in">.</span>vim
+
+<span class="string">"file encoding
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,gbk,big5,latin1
+
+"</span>Hot key <span class="keyword">to</span> switch between GBK <span class="literal">and</span> UTF<span class="subst">-</span><span class="number">8</span>
+<span class="built_in">set</span> <span class="subst">&lt;</span>C<span class="attribute">-u</span><span class="subst">&gt;=</span>^U
+<span class="built_in">set</span> <span class="subst">&lt;</span>C<span class="attribute">-b</span><span class="subst">&gt;=</span>^B
+<span class="built_in">map</span> <span class="subst">&lt;</span>C<span class="attribute">-u</span><span class="subst">&gt;</span>:<span class="built_in">set</span> fileencoding<span class="subst">=</span>utf<span class="subst">-</span><span class="number">8</span><span class="subst">&lt;</span>CR<span class="subst">&gt;</span>
+<span class="built_in">map</span> <span class="subst">&lt;</span>C<span class="attribute">-b</span><span class="subst">&gt;</span>:<span class="built_in">set</span> fileencoding<span class="subst">=</span>gbk<span class="subst">&lt;</span>CR<span class="subst">&gt;</span>
+</code></pre><h3 id="refs">refs</h3>
+<ul>
+<li>set term encoding: <a href="http://zcecil.net/?p=123" target="_blank">gvim utf8 under windows</a></li>
+<li>reload help infos in utf: <a href="http://electronic-blue.wikidot.com/blog:33" target="_blank">a Unicode solution of gVim under windows</a></li>
+<li>hotkey to change encoding: <a href="http://taogate.wordpress.com/2005/12/24/vim-%E6%94%AF%E6%8F%B4-utf-8-%E4%B8%AD%E6%96%87/" target="_blank">utf-8 Chinese support for vim</a></li>
+<li>Chinese solution: <a href="http://digdeeply.info/archives/05021988.html" target="_blank">Chinese character set solution</a></li>
+<li>A reference set: <a href="http://hi.baidu.com/jxvip/item/cbd3da3cf49608637c034b0b" target="_blank">perfect setting of gVim under windows</a></li>
+</ul>
+<h2 id="Other_Resources">Other Resources</h2>
+<ul>
+<li><a href="http://www.ukuug.org/events/linux2004/programme/paper-SMyers/Linux_2004_slides/vim_tips/" target="_blank">Power Vim Usage: Tips &amp; Tricks for Everyday Editing</a></li>
+<li><a href="http://www.moolenaar.net/habits.html" target="_blank">Vim: Seven habits of effective text editing</a></li>
+<li><a href="http://www.vim.org/scripts/script.php?script_id=2540" target="_blank">snipMate - TextMate-style snippets for Vim : vim online</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+          
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2012/qt-snippets/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2012/cancelable-biometrics/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2012/gvim/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2012-2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div>
+</footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++ Command Line Parser | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="Resources and libraries about how to parse command line arguments. Try to make program receive standard and flexible command line arguments.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="C++ Command Line Parser"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-icon-57.png">
+  <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72.png">
+  <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114.png">
+  <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144.png">
+
+
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-10-27T11:33:33.000Z"><a href="/2012/command-line-parser/">Saturday, Oct 27 2012, 07:33:33</a></time>
+
+  
+    <h1 class="title">C++ Command Line Parser</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/cmd/">cmd</a>, <a href="/tags/qt/">qt</a>, <a href="/tags/lib/">lib</a>, <a href="/tags/c++/">c++</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Resources and libraries about how to parse command line arguments. Try to make program receive standard and flexible command line arguments.</p>
+<a id="more"></a>
+
+<h2 id="Goal">Goal</h2>
+<p>Just like the git suite.</p>
+<pre><code>git <span class="operator"><span class="keyword">commit</span> -asm <span class="string">'new commit'</span>    </span>
+</code></pre><ul>
+<li><p>Both short and long form are acceptable.    </p>
+</li>
+<li><p>Can be combined together. It is really compact and really handy to use in this form.    </p>
+</li>
+</ul>
+<h2 id="Current_Example_project">Current Example project</h2>
+<p><a href="http://www.hackorama.com/anyoption/" target="_blank">AnyOption</a> is used in the <a href="https://github.com/quxiaofeng/dks_software" target="_blank">example project</a>.</p>
+<p>It is working well, and the only problem is annoying warnings of strcpy(). Because the visual studio recommends to use strcpy_s(). And also the std::cout can not be seen in Qt debug console.<br>Another problem is AnyOption can read options from a file with “:” separating “item:value” pairs. This kind of non-standard format is not very comfortable to use.</p>
+<h2 id="Resources">Resources</h2>
+<ul>
+<li><p>AnyOption - C/C++ Command line and resource file option parsing   </p>
+<ul>
+<li><p><a href="http://www.hackorama.com/anyoption/" target="_blank">Home Page</a>    </p>
+</li>
+<li><p><a href="https://github.com/hackorama/AnyOption/" target="_blank">Github Project Page</a>    </p>
+</li>
+<li><p>Latest version by hamann<a href="https://github.com/hamann/AnyOption" target="_blank">hamann/AnyOption</a>    </p>
+</li>
+</ul>
+</li>
+<li><p>ArgvParser - C++ class for convenient parsing of command line options  </p>
+<ul>
+<li><a href="http://mih.voxindeserto.de/argvparser.html" target="_blank">Home Page</a>    </li>
+</ul>
+</li>
+<li><p>QtArg - a small C++ library based on the Qt 4 for parsing command line arguments.    </p>
+<ul>
+<li><p><a href="http://code.google.com/p/qtargparser/" target="_blank">Home Page</a>    </p>
+</li>
+<li><p><a href="http://qtargparser.googlecode.com/files/QtArg-1.2.1-src.zip" target="_blank">Download</a>   </p>
+</li>
+</ul>
+</li>
+<li><p>KCmdLineArgs - A class for command-line argument handling.  </p>
+<ul>
+<li><a href="http://api.kde.org/4.x-api/kdelibs-apidocs/kdecore/html/classKCmdLineArgs.html" target="_blank">Home Page</a>    </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+          
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2012/qt-reflection/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2012/sparse-and-low-rank/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2012/command-line-parser/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2012-2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div>
+</footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>

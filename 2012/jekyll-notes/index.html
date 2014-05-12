@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jekyll Notes | Xiaofeng QU</title>
+  <meta name="author" content="Xiaofeng QU">
+  
+  <meta name="description" content="Some tips and tricks of jekyll. Windows is still not a best develop platform. I have to tweak a little to run jekyll smoothly. Here are the notes for myself, and also for other people who may encounter similar problems.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Jekyll Notes"/>
+  <meta property="og:site_name" content="Xiaofeng QU"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+  <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+  <link rel="apple-touch-icon-precomposed" href="/apple-icon-57.png">
+  <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-icon-72.png">
+  <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-icon-114.png">
+  <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-icon-144.png">
+
+
+  <link rel="alternate" href="/atom.xml" title="Xiaofeng QU" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-50831338-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/research">Research</a></li>
+    
+      <li><a href="/links">Links</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2012-06-28T11:44:44.000Z"><a href="/2012/jekyll-notes/">Thursday, Jun 28 2012, 07:44:44</a></time>
+
+  
+    <h1 class="title">Jekyll Notes</h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/coding/">coding</a>
+  </div>
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/jekyll/">jekyll</a>, <a href="/tags/blog/">blog</a>, <a href="/tags/ruby/">ruby</a>, <a href="/tags/python/">python</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Some tips and tricks of jekyll. Windows is still not a best develop platform. I have to tweak a little to run jekyll smoothly. Here are the notes for myself, and also for other people who may encounter similar problems.</p>
+<a id="more"></a>
+
+<h3 id="Guides">Guides</h3>
+<ul>
+<li><a href="http://bradleygrainger.com/2011/09/07/how-to-use-github-pages-on-windows.html" target="_blank">Setting up the environment for jekyll</a></li>
+<li><p>Don’t forget to change code page before jekyll</p>
+<p>  chcp 65001<br>  jekyll —safe</p>
+</li>
+<li><p>_debug.bat</p>
+<ul>
+<li>change site.url to /</li>
+<li><p>then do this</p>
+<p>rmdir _site /s /q<br>chcp 65001<br>jekyll —server<br>PAUSE</p>
+</li>
+</ul>
+</li>
+<li><p>_build.bat</p>
+<ul>
+<li>change site.url to <a href="http://www4.comp.polyu.edu.hk/~csxfqu/" target="_blank">http://www4.comp.polyu.edu.hk/~csxfqu/</a></li>
+<li><p>then do this</p>
+<p>rmdir _site /s /q<br>chcp 65001<br>jekyll —safe<br>PAUSE</p>
+</li>
+</ul>
+</li>
+<li><p><a href="http://pygments.org/docs/lexers/" target="_blank">Code highlight names</a></p>
+</li>
+</ul>
+<h2 id="Steps">Steps</h2>
+<ul>
+<li>install Railsinstaller<ul>
+<li>gem update and install many gems …</li>
+</ul>
+</li>
+<li>install <a href="http://www.python.org/getit/" target="_blank">Python 2.7.3</a></li>
+<li>install <a href="http://pypi.python.org/pypi/setuptools#downloads" target="_blank">easy_install for python 2.7</a><ul>
+<li>in python273/Script forlder</li>
+<li>add this folder(“C:\Python27\Scripts” by default) to system PATH</li>
+</ul>
+</li>
+<li><p>install pygments</p>
+<p>  easy_install pygments</p>
+</li>
+</ul>
+<h3 id="add_post_url,_the_relative_internal_links_to_post">add <em>post_url</em>, the relative internal links to post</h3>
+<ul>
+<li>follow this <a href="https://github.com/mojombo/jekyll/issues/66" target="_blank">guide</a>    </li>
+<li>download post_url.rb file <a href="https://github.com/thatguystone/jekyll/blob/5cffe5ecb5194ef0e26e66ced1e2ef5285a934e7/lib/jekyll/tags/post_url.rb" target="_blank">here</a>    </li>
+<li>the post_url.rb file should be put into this folder</li>
+</ul>
+<hr>
+<pre><code><span class="command">\liquid</span><span class="command">\tags</span>    
+</code></pre><hr>
+<ul>
+<li>the format is showed below as addressed in <a href="https://github.com/mojombo/jekyll/pull/369" target="_blank">this thread</a></li>
+</ul>
+<hr>
+<pre><code>Syntax: {% post_url 2012-06-28-name-of-post %}. 
+Useful for: [<span class="link_label">Some Link</span>](<span class="link_url">{% post_url 2012-06-28-name-of-post %}</span>) 
+</code></pre><hr>
+<ul>
+<li>And due to the relative-pathing of my blog, the actual link should be like this</li>
+</ul>
+<hr>
+<pre><code>[<span class="link_label">example to this post</span>](<span class="link_url">{{ site.url }}{% post_url 2012-06-28-jekyll-notes %}</span>)
+</code></pre><hr>
+<h3 id="Liquid_guide"><a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers" target="_blank">Liquid guide</a></h3>
+<ul>
+<li>And the <a href="http://bradleygrainger.com/2011/09/07/how-to-use-github-pages-on-windows.html" target="_blank">patch</a> under windows</li>
+</ul>
+<h3 id="Bibtex_Citation">Bibtex Citation</h3>
+<ul>
+<li><a href="https://github.com/archome/jekyll-citation" target="_blank">Jekyll-citation</a></li>
+<li><a href="https://github.com/inukshuk/jekyll-scholar" target="_blank">Jekyll-Scholar</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+          
+
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2012/kindle-resources/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2012/getting-started-with-r/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/2012/jekyll-notes/"></div>
+<!-- Duoshuo Comment END -->
+  
+</section>
+
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2012-2014 Xiaofeng QU
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div>
+</footer>
+  
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'hexocsxfqutk';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+    
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"csxfqutk"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = 'http://static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
