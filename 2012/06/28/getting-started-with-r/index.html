@@ -243,12 +243,14 @@ t.test(x, y, paired=TRUE)
 <pre><code class="r">
 cor.test(x, y)
 cor.test(x, y, method="Spearman")
+
 </code></pre>
 
 <h3 id="16-_Creating_a_Scatter_Plot">16. Creating a Scatter Plot</h3>
 <pre><code class="r">
 plot(x, y)
 plot(dfrm)
+
 </code></pre>
 
 <h3 id="17-_Creating_a_Bar_Chart">17. Creating a Bar Chart</h3>
@@ -259,12 +261,14 @@ barplot(heights,
         main="Mean Temp. by Month"
         names.arg=c("May", "Jun", "July", "Aug", "Sep"),
         ylab="Temp (deg. F)")
+
 </code></pre>
 
 
 <h3 id="18-_Creating_a_Box_Plot">18. Creating a Box Plot</h3>
 <pre><code class="r">
 boxplot(x)
+
 </code></pre>
 
 <h3 id="19-_Creating_a_Histogram">19. Creating a Histogram</h3>
@@ -273,12 +277,14 @@ data(Cars93, package="MASS")
 hist(Cars93$MPG.city)
 hist(Cars93$MPG.city, 20)
 hist(Cars93$MPG.city, 20, main="City MPG (1993)", xlab="MPG")
+
 </code></pre>
 
 <h3 id="20-_Performing_Simple_Linear_Regression">20. Performing Simple Linear Regression</h3>
 <pre><code class="r">
 lm(y ~ x)
 lm(y ~ x, data=dfrm) # Take x and y from dfrm
+
 </code></pre>
 
 
@@ -290,6 +296,7 @@ v=c(2.7971413, 2.7836201, 2.7570401, 0.4191765, 2.3785468, 1.8291302, 2.3472593,
 w=c(4.366557, 4.515084, 3.865557, 2.547935, 3.265971, 4.518522, 2.570884, 4.442560, 2.835248, 3.868573)
 lm(y ~ u + v + w)
 lm(y ~ u + v + w, data=dfrm)
+
 </code></pre>
 
 
@@ -311,6 +318,7 @@ fitted(m)
 residuals(m)
 resid(m)
 vcov(m)
+
 </code></pre>
 
 <h3 id="23-_Diagnosing_a_Linear_Regression">23. Diagnosing a Linear Regression</h3>
@@ -320,6 +328,7 @@ plot(m)
 
 library(car)
 outlier.test(m)
+
 </code></pre>
 
 <h3 id="24-_Predicting_New_Values">24. Predicting New Values</h3>
@@ -332,6 +341,7 @@ preds <- data.frame(
         v=c(3.9, 4.0, 4.1, 4.2),
         w=c(5.3, 5.5, 5,7, 5.9) )
 predict(m, newdata=preds)
+
 </code></pre>
 
 <h3 id="25-_Accessing_the_Functions_in_a_Package">25. Accessing the Functions in a Package</h3>
@@ -340,6 +350,7 @@ library(packagename)
 library(MASS)
 lda(f ~ x + y)
 detach(package:MASS)
+
 </code></pre>
 
 <h3 id="Chinese_Translation">Chinese Translation</h3>
