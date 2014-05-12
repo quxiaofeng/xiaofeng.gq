@@ -139,6 +139,7 @@ example(func)
 <h3 id="3-_Viewing_the_Supplied_Documentation">3. Viewing the Supplied Documentation</h3>
 <pre><code class="r">
 help.start()
+
 </code></pre>
 
 <h3 id="4-_Searching_the_Web_for_Help">4. Searching the Web for Help</h3>
@@ -160,7 +161,6 @@ print dftm
 <pre>
 <code class="r">
 table <- read.csv("filename", header=FALSE)
-
 </code>
 </pre>
 
@@ -180,6 +180,7 @@ sd(x)
 var(x)
 cor(x,y)
 cov(x,y)
+
 </code></pre>
 
 <h3 id="9-_Initializing_a_Data_Frame_form_Column_Data">9. Initializing a Data Frame form Column Data</h3>
@@ -188,6 +189,7 @@ dfrm <- data.frame(v1, v2, v3, f1, f2)
 dfrm <- as.data.frame(list.of.vectors)
 dfrm <- data.frame(pred1, pred2, pred3, resp)
 dfrm <- data.frame(p1=pred1, p2=pred2, p3=pred3, r=resp)
+
 </code></pre>
 
 <h3 id="10-_Selecting_Data_Frame_Columns_by_Position">10. Selecting Data Frame Columns by Position</h3>
@@ -198,6 +200,7 @@ dfrm[c(n_1, n_2, ..., n_k)]
 dfrm[, n]
 dfrm[, c(n_1, n_2, ..., n_k)]
 dfrm[, vec, drop=FALSE]
+
 </code></pre>
 
 <h3 id="11-_Selecting_Data_Frame_Columns_by_Name">11. Selecting Data Frame Columns by Name</h3>
@@ -208,6 +211,7 @@ dfrm["name"]
 dfrm[c("name_1", "name_2", ..., "name_k")]
 dfrm[, "name"]
 dfrm[, c("name_1", "name_2", ..., "name_k")]
+
 </code></pre>
 
 <h3 id="12-_Forming_a_Confidence_Interval_for_a_Mean">12. Forming a Confidence Interval for a Mean</h3>
@@ -215,6 +219,7 @@ dfrm[, c("name_1", "name_2", ..., "name_k")]
 x <- rnorm(50, mean=100, sd=50)
 t.test(x)
 t.test(x, conf.level=0.99)
+
 </code></pre>
 
 
@@ -223,6 +228,7 @@ t.test(x, conf.level=0.99)
 prop.test(n, x)
 prop.test(6, 9)
 prop.test(n, x,,p, conf.level=0.99) # 99% confidence level
+
 </code></pre>
 
 
@@ -230,6 +236,7 @@ prop.test(n, x,,p, conf.level=0.99) # 99% confidence level
 <pre><code class="r">
 t.test(x, y)
 t.test(x, y, paired=TRUE)
+
 </code></pre>
 
 <h3 id="15-_Testing_a_Correlation_for_Significance">15. Testing a Correlation for Significance</h3>
