@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Enthought Canopy 1.3.0 Welcome Issue | Xiaofeng QU</title>
+  <title>A SWIG Example | Xiaofeng QU</title>
   <meta name="author" content="Xiaofeng QU">
   
-  <meta name="description" content="A small issue had to be solved before running of the canopy bundle.">
+  <meta name="description" content="A SWIG example interfacing a windows dll to python.">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Enthought Canopy 1.3.0 Welcome Issue"/>
+  <meta property="og:title" content="A SWIG Example"/>
   <meta property="og:site_name" content="Xiaofeng QU"/>
 
   
@@ -91,10 +91,10 @@
   <div class="post-content">
     <header>
       
-      <time datetime="2014-02-27T07:28:32.000Z"><a href="/2014/02/27/canopy-welcome-issue/">Thursday, Feb 27 2014, 03:28:32</a></time>
+      <time datetime="2014-03-01T09:58:51.000Z"><a href="/2014/03/01/swig-example/">Saturday, Mar 1 2014, 05:58:51</a></time>
 
   
-    <h1 class="title">Enthought Canopy 1.3.0 Welcome Issue</h1>
+    <h1 class="title">A SWIG Example</h1>
   
 
 
@@ -108,7 +108,7 @@
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/tags/note/">note</a>, <a href="/tags/python/">python</a>, <a href="/tags/canopy/">canopy</a>
+    <a href="/tags/coding/">coding</a>, <a href="/tags/python/">python</a>, <a href="/tags/C/">C</a>, <a href="/tags/C++/">C++</a>
   </div>
 
 <div class="clear"></div>
@@ -116,36 +116,99 @@
     </header>
     <div class="entry">
       
-        <h2 id="The_Issue">The Issue</h2>
-<p>After a fresh install of Enthought Canopy 1.3.0.1715 win x86 version, it starts with a welcome error.</p>
+        <h2 id="SWIG"><a href="http://www.swig.org" target="_blank">SWIG</a></h2>
+<p>SWIG is stand along software development tool. It connects code programmed in C and C++ with many high-level programming languages including python. SWIG is used to parse C/C++ interfaces and generate the ‘glue code’ required for the above target languages to call into the C/C++ code. </p>
 <a id="more"></a>
 
-<figure><br>  <img src="http://i.imgur.com/hRgTP0u.png"><br>  <figcaption><br>  The error page<br>  </figcaption><br></figure>
+<p>The idea of SWIG is to create a dynamic python library module, which calls the SDK DLL. The structure is shown below.</p>
+<figure><br>  <img src="http://i.imgur.com/rPhlR7E.png"><br>  <figcaption><br>  SWIG interfacing principle<br>  </figcaption><br></figure>
 
-<h2 id="The_Solution">The Solution</h2>
-<p>A possible solution is mentioned on the enthought blog in a reply of this post.</p>
-<figure><br>  <img src="http://i.imgur.com/EgSIULO.png"><br>  <figcaption><br>  The reply about the solution<br>  </figcaption><br></figure>
+<p>The SWIG compiles the DLL and H files under the instruction of the .i file (SWIG configuring file). The SWIG project generates the Python Dynamic Library file (pyd). This pyd file can be imported to python.</p>
+<h2 id="A_Basic_But_Not_Simple_Example">A Basic But Not Simple Example</h2>
+<ul>
+<li><a href="https://github.com/quxiaofeng/swig-cpp-class-dll-wrapping-test" target="_blank">github repo</a></li>
+</ul>
+<h3 id="1-_Make_a_little_DLL_project-">1. Make a little DLL project.</h3>
+<p>In the repo, this little DLL project is <strong>xiaoAdd</strong>. There is a <strong>class AddTest</strong>. This class has only one useful <strong>member function add</strong>.</p>
+<p><code>AddTest.h</code></p>
+<pre><code><span class="comment">/* AddTest.h */</span>
+<span class="preprocessor">#<span class="keyword">pragma</span> once</span>
 
-<p>The solution is to change the code in file</p>
-<pre><code>C:<span class="command">\Program</span> Files<span class="command">\Enthought</span><span class="command">\Canopy</span>32<span class="command">\App</span><span class="command">\appdata</span><span class="command">\canopy</span>-1.3.0.1715.win-x86<span class="command">\Lib</span><span class="command">\mimetypes</span>.py
-</code></pre><p><strong>from</strong></p>
-<pre><code><span class="attribute">254    i +</span>=<span class="string"> 1
-255
-256    default_encoding = sys.getdefaultencoding()</span>
-</code></pre><p><strong>to</strong></p>
-<pre><code><span class="number">254</span>    <span class="built_in">i</span> += <span class="number">1</span>
-<span class="number">255</span>
-<span class="number">256</span>    <span class="keyword">if</span> <span class="transposed_variable">sys.</span>getdefaultencoding()!=<span class="string">'gbk'</span>:
-<span class="number">257</span>        reload(sys)
-<span class="number">258</span>        <span class="transposed_variable">sys.</span>setdefaultencoding(<span class="string">'gbk'</span>)
-<span class="number">259</span>
-<span class="number">260</span>    default_encoding = <span class="transposed_variable">sys.</span>getdefaultencoding()
-</code></pre><h2 id="It_Works">It Works</h2>
-<figure><br>  <img src="http://i.imgur.com/uBRhLVa.jpg"><br>  <figcaption><br>  The fixed welcoming page<br>  </figcaption><br></figure>
+class __declspec(dllexport) AddTest
+{
+<span class="keyword">public</span>:
+    <span class="title">AddTest</span>(<span class="keyword">void</span>);
+    ~AddTest(<span class="keyword">void</span>);
+    <span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b);
+};
+</code></pre><p><code>AddTest.cpp</code></p>
+<pre><code><span class="comment">/* AddTest.cpp */</span>
+<span class="preprocessor">#include "AddTest.h"</span>
 
-<p>I am still inexperienced to know why this solution works.</p>
-<p>However, from the code, it can be found that the windows xp doesn’t provide a proper return string ‘gbk’. In the solution, the system default encoding is set manually to ‘gbk’.</p>
-<p>The problem could be the system - windows xp, but also could be the python function, which provides the system settings.</p>
+AddTest::AddTest(<span class="keyword">void</span>)
+{
+}
+
+AddTest::~AddTest(<span class="keyword">void</span>)
+{
+}
+
+<span class="keyword">int</span> AddTest::add(<span class="keyword">int</span> a, <span class="keyword">int</span> b)
+{
+    <span class="keyword">return</span> a+b;
+}
+</code></pre><p>Compile this project and get the results.</p>
+<pre><code>xiaoAdd<span class="preprocessor">.dll</span>
+xiaoAdd<span class="preprocessor">.lib</span>
+xiaoAdd<span class="preprocessor">.pdb</span>
+</code></pre><h3 id="2-_Make_a_Python_dynamic_module">2. Make a Python dynamic module</h3>
+<p>In the github repo, this module is xiaoA</p>
+<p><em>AddTest.h</em></p>
+<pre><code><span class="comment">/* AddTest.h */</span>
+<span class="preprocessor">#<span class="keyword">pragma</span> once</span>
+
+class __declspec(dllimport)AddTest
+{
+<span class="keyword">public</span>:
+    <span class="title">AddTest</span>(<span class="keyword">void</span>);
+    ~AddTest(<span class="keyword">void</span>);
+    <span class="keyword">int</span> add(<span class="keyword">int</span> a, <span class="keyword">int</span> b);
+};
+</code></pre><p><em>xiaoAddModule.i</em></p>
+<pre><code><span class="comment">/* xiaoAddModule.i */</span>
+<span class="tag">%<span class="title">module</span></span> xiaoAddModule
+<span class="tag">
+%{
+/* Put header files here or function declarations like below */
+#include "AddTest.h"
+%}</span>
+<span class="tag">
+%<span class="title">include</span></span> &lt;windows.i&gt;
+<span class="tag">%<span class="title">include</span></span> "AddTest.h"
+</code></pre><h4 id="1-_Compile_the_xiaoAddModule-i_for_xiaoAddModule_wrap-cxx-">1. Compile the xiaoAddModule.i for xiaoAddModule_wrap.cxx.</h4>
+<h4 id="2-_Build_the_project_(Reference)_including">2. Build the project (<a href="http://stackoverflow.com/questions/11693047/how-to-create-a-dll-with-swig-from-visual-studio-2010" target="_blank">Reference</a>) including</h4>
+<pre><code>xiaoAddModule_wrap<span class="preprocessor">.cxx</span>
+AddTest<span class="preprocessor">.h</span>
+xiaoAdd<span class="preprocessor">.dll</span>
+xiaoAdd<span class="preprocessor">.lib</span>
+</code></pre><h4 id="3-_Get_the_results">3. Get the results</h4>
+<pre><code>_xiaoAddModule<span class="preprocessor">.exp</span>
+_xiaoAddModule<span class="preprocessor">.lib</span>
+_xiaoAddModule<span class="preprocessor">.pdb</span>
+_xiaoAddModule<span class="preprocessor">.pyd</span>
+xiaoAddModule<span class="preprocessor">.py</span>
+xiaoAddmodule<span class="preprocessor">.pyc</span>
+</code></pre><h4 id="4-_Write_the_Python_script_within_the_folder_where_above_results_are_located-">4. Write the Python script within the folder where above results are located.</h4>
+<p><code>test.py</code></p>
+<pre><code><span class="comment"># test.py</span>
+<span class="keyword">import</span> xiaoAddModule
+instance = xiaoAddModule.AddTest()
+<span class="keyword">print</span> <span class="string">'The result of 2 + 3 = %r'</span> % (instance.add(<span class="number">2</span>,<span class="number">3</span>))
+wait = input(<span class="string">"PRESS ENTER TO EXIT."</span>)
+</code></pre><h2 id="A_Complex_Solution_For_A_Complex_Example">A Complex Solution For A Complex Example</h2>
+<p>When wrapping a complex 3rd party library, there are lots of classes and functions. We want to keep this interface nice and clean. A C++ wrapper is implemented as shown below.</p>
+<figure><br>  <img src="http://i.imgur.com/lHar1Ig.png"><br>  <figcaption><br>  Double layer wrapping<br>  </figcaption><br></figure>
+
 
       
     </div>
@@ -173,10 +236,10 @@
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/2014/03/01/swig-example/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+    <a href="/2014/03/02/matlab-coding-style/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
   
   
-    <a href="/2014/02/26/metric-learning/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2014/02/27/canopy-welcome-issue/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -192,7 +255,7 @@
 
   
       <!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread" data-thread-key="/2014/02/27/canopy-welcome-issue/"></div>
+<div class="ds-thread" data-thread-key="/2014/03/01/swig-example/"></div>
 <!-- Duoshuo Comment END -->
   
 </section>
